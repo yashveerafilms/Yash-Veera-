@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "pwa-msedge",
+            "request": "launch",
+            "name": "Launch in Edge",
+            "url": "file:///${workspaceFolder}/index.html",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "pwa-chrome",
+            "request": "launch",
+            "name": "Launch in Chrome",
+            "url": "file:///${workspaceFolder}/index.html",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
+}

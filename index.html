@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yash Veera Films | Cinematic Excellence</title>
+    <meta name="description" content="Yash Veera Films is a leading movie production company in India, creating cinematic masterpieces.">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="cursor-glow"></div>
+    <div class="cursor-dot"></div>
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span style="font-size: 1.5rem; letter-spacing: 2px; color: var(--accent);">YASH</span>
+                <span style="font-size: 1.5rem; letter-spacing: 2px; color: var(--text-primary); margin-left: 5px;">VEERA</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Project</a></li>
+                <li><a href="cast.html">Cast & Crew</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="home" class="hero split-hero">
+        <div class="split-hero-container container">
+            <div class="split-content">
+                <h1 class="hero-title">
+                    <span class="line"><span class="word">Crafting</span></span><br>
+                    <span class="line"><span class="word accent-text">Masterpieces</span></span>
+                </h1>
+                <p class="hero-subtitle">India's Premier Production House</p>
+                <a href="projects.html" class="btn-primary" style="margin-top: 2rem;">View Portfolio</a>
+            </div>
+            
+            <div class="split-image reveal">
+                <div class="image-wrapper slider-container" id="hero-slider">
+                    <div class="slide active">
+                        <img src="slide1.jpg" class="slide-bg" alt="Ratna">
+                    </div>
+                    
+                    <div class="slide">
+                        <img src="slide2.jpg" class="slide-bg" alt="Unexpected">
+                    </div>
+                    
+                    <div class="slide">
+                        <img src="slide3.jpg" class="slide-bg" alt="Balu Thambi Manasile">
+                    </div>
+
+                    <div class="slider-controls">
+                        <div class="dot active" data-index="0"></div>
+                        <div class="dot" data-index="1"></div>
+                        <div class="dot" data-index="2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sections have been moved to their respective HTML files -->
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Yash Veera Films. All rights reserved. Crafted with cinematic passion.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
