@@ -1,6 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Navbar glassmorphism effect
     const navbar = document.getElementById('navbar');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('open');
+            menuToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+    }
     
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -196,79 +205,94 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.transition = 'none';
         });
     });
-    // 8. Horizontal Scroll for Portfolio
-    const portfolioSection = document.getElementById('projects');
-    const movieGrid = document.getElementById('movie-grid');
-    
-    if (portfolioSection && movieGrid) {
-        window.addEventListener('scroll', () => {
-            const sectionTop = portfolioSection.offsetTop;
-            const sectionHeight = portfolioSection.offsetHeight;
-            const scrollY = window.scrollY;
-            
-            // Check if we are inside the portfolio section
-            if (scrollY >= sectionTop && scrollY <= sectionTop + sectionHeight - window.innerHeight) {
-                // Calculate percentage of scroll within the section
-                const scrollPercent = (scrollY - sectionTop) / (sectionHeight - window.innerHeight);
-                
-                // Calculate max scroll distance (width of grid minus viewport width)
-                const maxScroll = movieGrid.scrollWidth - window.innerWidth;
-                
-                // Apply translation
-                movieGrid.style.transform = `translate3d(-${maxScroll * scrollPercent}px, 0, 0)`;
-            }
+
+    // Gallery lightbox
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const galleryLightbox = document.querySelector('.gallery-lightbox');
+    const lightboxImage = galleryLightbox ? galleryLightbox.querySelector('img') : null;
+    const lightboxNumber = galleryLightbox ? galleryLightbox.querySelector('figcaption span') : null;
+    const lightboxTitle = galleryLightbox ? galleryLightbox.querySelector('figcaption strong') : null;
+    const lightboxDescription = galleryLightbox ? galleryLightbox.querySelector('figcaption p') : null;
+    const lightboxClose = galleryLightbox ? galleryLightbox.querySelector('.lightbox-close') : null;
+
+    function closeGalleryLightbox() {
+        if (!galleryLightbox) return;
+        galleryLightbox.hidden = true;
+        document.body.style.overflow = '';
+    }
+
+    galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            if (!galleryLightbox || !lightboxImage) return;
+            lightboxImage.src = item.dataset.image;
+            lightboxImage.alt = item.querySelector('img').alt;
+            lightboxNumber.textContent = `${item.dataset.number} / 06`;
+            lightboxTitle.textContent = item.dataset.title;
+            if (lightboxDescription) lightboxDescription.textContent = item.dataset.description || '';
+            galleryLightbox.hidden = false;
+            document.body.style.overflow = 'hidden';
+            lightboxClose.focus();
         });
-    // 9. Slider Logic
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.slider-controls .dot');
+    });
+
+    if (lightboxClose) lightboxClose.addEventListener('click', closeGalleryLightbox);
+    if (galleryLightbox) galleryLightbox.addEventListener('click', event => {
+        if (event.target === galleryLightbox) closeGalleryLightbox();
+    });
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') closeGalleryLightbox();
+    });
+
+    // Hero slideshow
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.hero-dot');
+    const counter = document.querySelector('.hero-counter');
+    const heroSlider = document.querySelector('.hero-backdrop');
+    const filmLabel = document.querySelector('.hero-film-label');
+    const heroVideo = slides[0] ? slides[0].querySelector('video') : null;
     let currentSlide = 0;
-    const slideInterval = 8000; // 8 seconds
     let sliderTimer;
 
     function goToSlide(index) {
         if (!slides.length) return;
-        
+        const previousVideo = slides[currentSlide].querySelector('video');
+        if (previousVideo) {
+            previousVideo.pause();
+            previousVideo.currentTime = 0;
+        }
         slides[currentSlide].classList.remove('active');
         if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
-        
-        // Reset animations on text by re-triggering reflow
-        const titles = slides[index].querySelectorAll('.word');
-        titles.forEach(el => {
-            el.style.animation = 'none';
-            el.offsetHeight; /* trigger reflow */
-            el.style.animation = null; 
-        });
-
         currentSlide = index;
-        
         slides[currentSlide].classList.add('active');
         if (dots[currentSlide]) dots[currentSlide].classList.add('active');
-    }
-
-    function nextSlide() {
-        if (!slides.length) return;
-        let index = (currentSlide + 1) % slides.length;
-        goToSlide(index);
+        if (filmLabel) {
+            filmLabel.querySelector('strong').textContent = slides[currentSlide].dataset.title;
+            filmLabel.querySelector('small').textContent = slides[currentSlide].dataset.credit;
+        }
+        if (counter) counter.innerHTML = `0${currentSlide + 1} <i>/ 0${slides.length}</i>`;
+        const activeVideo = slides[currentSlide].querySelector('video');
+        if (activeVideo) {
+            activeVideo.currentTime = 0;
+            activeVideo.play().catch(() => {});
+        }
     }
 
     function startSlider() {
-        if(slides.length > 0) {
-            sliderTimer = setInterval(nextSlide, slideInterval);
-        }
-    }
-    
-    function resetSliderTimer() {
         clearInterval(sliderTimer);
-        startSlider();
+        if (slides.length > 1 && currentSlide !== 0) sliderTimer = setInterval(() => goToSlide((currentSlide + 1) % slides.length), 8000);
     }
 
-    if (dots.length > 0) {
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                goToSlide(index);
-                resetSliderTimer();
-            });
-        });
-        startSlider();
+    if (heroVideo) heroVideo.addEventListener('ended', () => {
+        if (currentSlide === 0) {
+            goToSlide(1);
+            startSlider();
+        }
+    });
+
+    dots.forEach((dot, index) => dot.addEventListener('click', () => { goToSlide(index); startSlider(); }));
+    if (heroSlider) {
+        heroSlider.addEventListener('mouseenter', () => clearInterval(sliderTimer));
+        heroSlider.addEventListener('mouseleave', startSlider);
     }
+    startSlider();
 });

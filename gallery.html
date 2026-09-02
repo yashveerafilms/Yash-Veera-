@@ -4,46 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yash Veera Films | Gallery</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="gallery-body">
     <div class="cursor-glow"></div>
     <div class="cursor-dot"></div>
     <nav id="navbar" class="navbar scrolled" style="background: var(--glass-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border);">
         <div class="nav-container">
             <a href="index.html" class="logo">
-                <span style="font-size: 1.5rem; letter-spacing: 2px; color: var(--accent);">YASH</span>
-                <span style="font-size: 1.5rem; letter-spacing: 2px; color: var(--text-primary); margin-left: 5px;">VEERA</span>
+                <video class="brand-logo" autoplay muted loop playsinline poster="logo.svg" aria-label="Yash Veera Films logo"><source src="Yash Veera logo Video.mp4" type="video/mp4"></video>
+                <strong>YASH VEERA<br><small>FILMS</small></strong>
             </a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="projects.html">Project</a></li>
+                <li><a href="projects.html">Projects</a></li>
                 <li><a href="cast.html">Cast & Crew</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
+                <li><a class="active" aria-current="page" href="gallery.html">Gallery</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
+            <a class="nav-mark" href="contact.html">Let's talk <span>↗</span></a>
+            <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
         </div>
     </nav>
 
-    <div style="padding-top: 100px;"></div>
-
-    <section id="gallery" class="about-section" style="background: var(--bg-dark); min-height: calc(100vh - 200px);">
-        <div class="container">
-            <h2 class="reveal">Production <span>Gallery</span></h2>
-            <div class="gallery-grid reveal">
-                <div class="gallery-item"><img src="file:///C:/Users/ashis/.gemini/antigravity-ide/brain/7a20e922-a90d-4780-8a32-f1ddf1aa990c/movie_poster_1_1787680237572.png" alt="Gallery Image 1"></div>
-                <div class="gallery-item"><img src="file:///C:/Users/ashis/.gemini/antigravity-ide/brain/7a20e922-a90d-4780-8a32-f1ddf1aa990c/movie_poster_3_1787680310238.png" alt="Gallery Image 2"></div>
-                <div class="gallery-item"><img src="file:///C:/Users/ashis/.gemini/antigravity-ide/brain/7a20e922-a90d-4780-8a32-f1ddf1aa990c/movie_poster_1_1787680237572.png" alt="Gallery Image 3"></div>
+    <main class="gallery-page">
+        <section id="gallery" class="gallery-showcase">
+            <div class="container">
+                <div class="gallery-heading reveal">
+                    <p class="eyebrow">Production stills · 2026</p>
+                    <p>Every frame carries a little of the journey.</p>
+                </div>
+                <div class="gallery-grid reveal">
+                    <button class="gallery-item gallery-item-feature" type="button" data-image="gallary/WhatsApp Image 2026-09-01 at 12.36.01 AM.jpeg" data-title="A proud and memorable meeting" data-number="01" data-description="Pyarelal Gundecha had the proud honour of meeting Shri Amit Shah, one of India's most influential and respected leaders. Known for his strong leadership, vision, and unwavering commitment to the nation, Shri Amit Shah continues to inspire millions across India. For Pyarelal Gundecha, this was more than just a meeting—it was a powerful and memorable moment of recognition, respect, and inspiration. Standing alongside one of the nation's strongest leaders, he carries his own identity with confidence, determination, and a bold presence. When vision meets strength, moments become memories—and memories become history.">
+                        <img src="gallary/WhatsApp Image 2026-09-01 at 12.36.01 AM.jpeg" alt="Pyarelal Gundecha meeting Shri Amit Shah">
+                        <span class="gallery-caption"><b>01</b><strong>A proud and memorable meeting</strong><i>Open frame ↗</i></span>
+                    </button>
+                    <button class="gallery-item" type="button" data-image="gallary/WhatsApp Image 2026-09-01 at 12.36.49 AM.jpeg" data-title="A meeting driven by vision" data-number="02" data-description="Producer Pyarelal Gundecha had the privilege of meeting Sanjay Kapoor to discuss his upcoming cinematic venture. A meeting driven by vision, ambition, creativity, and the passion to bring powerful stories to the screen. Pyarelal Gundecha continues to move forward with the confidence and determination of a producer who believes in creating cinema that makes an impact. Big dreams need bold vision. Great cinema needs powerful minds. And every remarkable journey begins with one meaningful meeting.">
+                        <img src="gallary/WhatsApp Image 2026-09-01 at 12.36.49 AM.jpeg" alt="Producer Pyarelal Gundecha meeting Sanjay Kapoor">
+                        <span class="gallery-caption"><b>02</b><strong>A meeting driven by vision</strong><i>Open frame ↗</i></span>
+                    </button>
+                    <button class="gallery-item" type="button" data-image="gallary/WhatsApp Image 2026-09-01 at 12.38.06 AM.jpeg" data-title="Between takes" data-number="03">
+                        <img src="gallary/WhatsApp Image 2026-09-01 at 12.38.06 AM.jpeg" alt="Behind the scenes moment">
+                        <span class="gallery-caption"><b>03</b><strong>Between takes</strong><i>Open frame ↗</i></span>
+                    </button>
+                    <button class="gallery-item gallery-item-wide" type="button" data-image="gallary/WhatsApp Image 2026-09-01 at 12.39.28 AM.jpeg" data-title="The work behind the wonder" data-number="04">
+                        <img src="gallary/WhatsApp Image 2026-09-01 at 12.39.28 AM.jpeg" alt="Yash Veera Films production detail">
+                        <span class="gallery-caption"><b>04</b><strong>The work behind the wonder</strong><i>Open frame ↗</i></span>
+                    </button>
+                    <button class="gallery-item" type="button" data-image="gallary/WhatsApp Image 2026-09-01 at 12.40.23 AM.jpeg" data-title="A world in the making" data-number="05">
+                        <img src="gallary/WhatsApp Image 2026-09-01 at 12.40.23 AM.jpeg" alt="Film production still">
+                        <span class="gallery-caption"><b>05</b><strong>A world in the making</strong><i>Open frame ↗</i></span>
+                    </button>
+                    <button class="gallery-item gallery-item-last" type="button" data-image="gallary/WhatsApp Image 2026-09-01 at 12.44.09 AM.jpeg" data-title="Hold the feeling" data-number="06">
+                        <img src="gallary/WhatsApp Image 2026-09-01 at 12.44.09 AM.jpeg" alt="Final production still">
+                        <span class="gallery-caption"><b>06</b><strong>Hold the feeling</strong><i>Open frame ↗</i></span>
+                    </button>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
+
+    <div class="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Expanded gallery image" hidden>
+        <button class="lightbox-close" type="button" aria-label="Close image viewer">×</button>
+        <figure><img src="" alt=""><figcaption><span></span><strong></strong><p></p></figcaption></figure>
+    </div>
 
     <footer>
-        <div class="footer-content">
-            <p>&copy; 2024 Yash Veera Films. All rights reserved. Crafted with cinematic passion.</p>
-        </div>
+        <div class="container footer-top"><div class="footer-brand"><a href="index.html" class="logo"><img class="brand-logo" src="about us/ChatGPT Image Sep 2, 2026, 12_05_53 PM.jpg" alt="Yash Veera Films logo"><strong>YASH VEERA<br><small>FILMS</small></strong></a><p>Stories that stay.</p></div><div class="footer-links"><div><p class="eyebrow">Navigate</p><a href="projects.html">Projects</a><a href="about.html">About us</a><a href="gallery.html">Gallery</a></div><div><p class="eyebrow">Connect</p><a href="contact.html">Get in touch</a><a href="tel:+919940290000">+91 99402 90000</a><a href="mailto:yashveerafilms@gmail.com">yashveerafilms@gmail.com</a></div></div></div><div class="container footer-bottom"><span>© 2026 Yash Veera Films</span><span>Made for the big screen.</span></div>
     </footer>
 
     <script src="script.js"></script>

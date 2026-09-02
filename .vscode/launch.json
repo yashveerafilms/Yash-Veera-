@@ -2,18 +2,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "pwa-msedge",
+            "type": "msedge",
             "request": "launch",
-            "name": "Launch in Edge",
-            "url": "file:///${workspaceFolder}/index.html",
-            "webRoot": "${workspaceFolder}"
-        },
-        {
-            "type": "pwa-chrome",
-            "request": "launch",
-            "name": "Launch in Chrome",
-            "url": "file:///${workspaceFolder}/index.html",
-            "webRoot": "${workspaceFolder}"
+            "name": "Open Yash Veera Films",
+            "file": "${workspaceFolder}/index.html",
+            "webRoot": "${workspaceFolder}",
+            "userDataDir": "${workspaceFolder}/.vscode/edge-profile"
         }
     ]
 }

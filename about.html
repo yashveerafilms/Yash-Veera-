@@ -4,44 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yash Veera Films | About Us</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="about-body">
     <div class="cursor-glow"></div>
     <div class="cursor-dot"></div>
     <nav id="navbar" class="navbar scrolled" style="background: var(--glass-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border);">
         <div class="nav-container">
             <a href="index.html" class="logo">
-                <span style="font-size: 1.5rem; letter-spacing: 2px; color: var(--accent);">YASH</span>
-                <span style="font-size: 1.5rem; letter-spacing: 2px; color: var(--text-primary); margin-left: 5px;">VEERA</span>
+                <video class="brand-logo" autoplay muted loop playsinline poster="logo.svg" aria-label="Yash Veera Films logo"><source src="Yash Veera logo Video.mp4" type="video/mp4"></video>
+                <strong>YASH VEERA<br><small>FILMS</small></strong>
             </a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="projects.html">Project</a></li>
+                <li><a href="projects.html">Projects</a></li>
                 <li><a href="cast.html">Cast & Crew</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="about.html">About Us</a></li>
+                <li><a class="active" href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
+            <a class="nav-mark" href="contact.html">Let's talk <span>↗</span></a>
+            <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
         </div>
     </nav>
 
-    <div style="padding-top: 100px;"></div>
-
-    <section id="about-us" class="about-section" style="min-height: calc(100vh - 200px);">
-        <div class="container">
-            <h2>Our <span>Vision</span></h2>
-            <div class="about-content">
-                <p>At Yash Veera Films, we believe in the visceral power of storytelling. Based in the heart of India, our production house is dedicated to bringing compelling narratives, visually stunning cinematography, and unforgettable performances to the silver screen. We don't just make movies; we craft experiences that push the boundaries of modern cinema.</p>
+    <main class="about-page">
+        <section id="about-us" class="about-section">
+            <div class="container about-layout reveal">
+                <div class="about-visual">
+                    <img src="about us/WhatsApp Image 2026-09-01 at 2.37.21 PM (1).jpeg" alt="Pyarelal Gundecha film poster">
+                    <div class="about-visual-label"><span>01 / 01</span><strong>A story worth framing</strong></div>
+                </div>
+                <div class="about-copy">
+                    <p class="eyebrow">The man behind the frame</p>
+                    <h1>Pyarelal<br><em>Gundecha.</em></h1>
+                    <p class="about-lead">A visionary force behind Indian cinema.</p>
+                    <div class="about-experience"><strong>30</strong><span>Years of<br>experience</span></div>
+                    <div class="about-content">
+                        <h2> A visionary force behind Indian cinema</h2>
+                        <p>In an industry where dreams demand courage, vision demands leadership, and success demands relentless determination, <strong>Pyarelal Gundecha</strong> stands as a powerful name driven by an unwavering passion for cinema.</p>
+                        <p>A producer, industry leader, visionary entrepreneur, and a strong voice for filmmakers, he represents a generation that believes cinema is not just entertainment. It is <strong>emotion, culture, influence, and legacy.</strong></p>
+                        <p>His association with the <strong>Indian Motion Picture Producers' Association (IMPPA)</strong> and his role as an <strong>Executive Committee Member</strong> reflect his active involvement and commitment towards the strength, growth, and future of the Indian film industry.</p>
+                        <p>As an <strong>Executive Committee Member of the Tamil Film Producers Council</strong>, he continues to stand alongside the creative and production community, contributing his experience, leadership, and vision to one of India's most influential film industries.</p>
+                        <h2>The visionary behind Yash Veera Films</h2>
+                        <p>As the <strong>Founder of Yash Veera Films</strong>, Pyarelal Gundecha carries a bold vision: to build a cinematic powerhouse that celebrates powerful storytelling, extraordinary talent, unforgettable characters, and films that connect with audiences across languages and borders.</p>
+                        <p><strong>Yash Veera Films is not just a production company.</strong> It is a vision. A platform for dreamers. A home for storytellers. A powerful force created to transform imagination into cinema.</p>
+                        <p>With an ambition to work with exceptional directors, talented actors, creative technicians, writers, musicians, and filmmakers, the vision is to create entertainment that carries <strong>scale, emotion, passion, and impact.</strong></p>
+                        <p>Pyarelal Gundecha believes that every great film begins with a dream, but only a fearless vision can transform that dream into history.</p>
+                        <h2>His journey. His vision. His legacy.</h2>
+                        <p>He represents the spirit of modern Indian cinema: where regional stories can become national sensations, where talent can rise beyond boundaries, and where powerful storytelling can reach the world.</p>
+                        <p>With leadership in the industry and a bold vision through <strong>Yash Veera Films</strong>, Pyarelal Gundecha continues his journey with one mission:</p>
+                        <p class="about-purpose">To create.<br>To inspire.<br>To empower.<br>To build cinema that leaves a legacy.</p>
+                    </div>
+                    <a class="text-link" href="projects.html">Explore our films <span>↗</span></a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+        <section class="about-signature">
+            <div class="container"><p class="eyebrow">Producer · Leader · Visionary · Founder</p><p>He doesn't just believe in stories.<br><em>He believes in the power to make them history.</em></p><p class="about-signature-note">Yash Veera Films — where vision meets cinema. Where stories become legacy.</p></div>
+        </section>
+    </main>
 
     <footer>
-        <div class="footer-content">
-            <p>&copy; 2024 Yash Veera Films. All rights reserved. Crafted with cinematic passion.</p>
-        </div>
+        <div class="container footer-top"><div class="footer-brand"><a href="index.html" class="logo"><img class="brand-logo" src="about us/ChatGPT Image Sep 2, 2026, 12_05_53 PM.jpg" alt="Yash Veera Films logo"><strong>YASH VEERA<br><small>FILMS</small></strong></a><p>Stories that stay.</p></div><div class="footer-links"><div><p class="eyebrow">Navigate</p><a href="projects.html">Projects</a><a href="about.html">About us</a><a href="gallery.html">Gallery</a></div><div><p class="eyebrow">Connect</p><a href="contact.html">Get in touch</a><a href="tel:+919940290000">+91 99402 90000</a><a href="mailto:yashveerafilms@gmail.com">yashveerafilms@gmail.com</a></div></div></div><div class="container footer-bottom"><span>© 2026 Yash Veera Films</span><span>Made for the big screen.</span></div>
     </footer>
 
     <script src="script.js"></script>
