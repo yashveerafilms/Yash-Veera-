@@ -140,6 +140,7 @@ body:not(.home-page) footer { margin-top: 0; }
 .contact-info a:hover { color: var(--gold); }
 .form-group { margin-bottom: 28px; }
 .form-group input, .form-group textarea { background: transparent; border: 0; border-bottom: 1px solid #bbb3aa; color: var(--ink); font: inherit; padding: 15px 0; width: 100%; }
+.form-group textarea { resize: vertical; min-height: 120px; }
 .form-group input:focus, .form-group textarea:focus { border-color: var(--red); outline: none; }
 .btn-primary { background: var(--red); border: 0; color: white; cursor: pointer; font: inherit; padding: 17px 28px; text-transform: uppercase; }
 .gallery-page { background: var(--ink); color: var(--paper); }

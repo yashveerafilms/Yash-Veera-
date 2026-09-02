@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Form submission handler
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = contactForm.querySelector('button');
             const originalText = btn.textContent;
@@ -68,22 +68,41 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.style.opacity = '0.7';
             btn.style.pointerEvents = 'none';
             
-            setTimeout(() => {
-                btn.innerHTML = '<span>TRANSMISSION RECEIVED</span>';
-                btn.style.borderColor = '#e5b85a';
-                btn.style.color = '#e5b85a';
-                btn.style.background = 'rgba(229,184,90,0.1)';
-                contactForm.reset();
+            try {
+                const formData = new FormData(contactForm);
+                const response = await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    body: formData
+                });
+                const data = await response.json();
                 
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.style.borderColor = '';
-                    btn.style.color = '';
-                    btn.style.background = '';
-                    btn.style.opacity = '1';
-                    btn.style.pointerEvents = 'auto';
-                }, 4000);
-            }, 1800);
+                if (data.success) {
+                    btn.innerHTML = '<span>TRANSMISSION RECEIVED</span>';
+                    btn.style.borderColor = '#e5b85a';
+                    btn.style.color = '#e5b85a';
+                    btn.style.background = 'rgba(229,184,90,0.1)';
+                    contactForm.reset();
+                } else {
+                    btn.innerHTML = '<span>TRANSMISSION FAILED</span>';
+                    btn.style.borderColor = 'var(--red)';
+                    btn.style.color = 'var(--red)';
+                    btn.style.background = 'rgba(166,62,43,0.1)';
+                }
+            } catch (error) {
+                btn.innerHTML = '<span>TRANSMISSION FAILED</span>';
+                btn.style.borderColor = 'var(--red)';
+                btn.style.color = 'var(--red)';
+                btn.style.background = 'rgba(166,62,43,0.1)';
+            }
+            
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.borderColor = '';
+                btn.style.color = '';
+                btn.style.background = '';
+                btn.style.opacity = '1';
+                btn.style.pointerEvents = 'auto';
+            }, 4000);
         });
     }
 
