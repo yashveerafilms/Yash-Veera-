@@ -89,11 +89,12 @@ h1 em, h2 em { color: var(--gold); font-style: italic; font-weight: 600; }
 .studio-copy .text-link, .people-copy .text-link { border-color: var(--red); color: var(--ink); }
 .home-gallery-section { background: #25201c; }
 .home-gallery-section .section-heading h2 { color: var(--paper); }
-.home-gallery-grid { display: grid; gap: 18px; grid-template-columns: 1.35fr .8fr .8fr; }
-.home-gallery-grid a { height: 360px; overflow: hidden; position: relative; }
+.home-gallery-grid { display: grid; gap: 24px; grid-template-columns: 1.35fr .8fr .8fr; }
+.home-gallery-grid a { border-radius: 16px; box-shadow: 0 12px 35px rgba(0,0,0,0.4); height: 360px; overflow: hidden; position: relative; transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
 .home-gallery-grid a:first-child { height: 440px; }
-.home-gallery-grid img { background: #302923; height: 100%; object-fit: contain; object-position: center; transition: transform .7s; width: 100%; }
-.home-gallery-grid a:hover img { transform: scale(1.05); }
+.home-gallery-grid img { background: #302923; height: 100%; object-fit: contain; object-position: center; transition: transform .8s cubic-bezier(0.2, 0.8, 0.2, 1); width: 100%; }
+.home-gallery-grid a:hover { box-shadow: 0 20px 45px rgba(0,0,0,0.65); transform: translateY(-8px); }
+.home-gallery-grid a:hover img { transform: scale(1.06); }
 .home-gallery-grid a::after { background: linear-gradient(0deg, rgba(0,0,0,.65), transparent 55%); content: ''; inset: 0; position: absolute; }
 .home-gallery-grid span { bottom: 18px; color: var(--gold); font-size: 10px; left: 20px; letter-spacing: 2px; position: absolute; z-index: 1; }
 .people-section { background: var(--paper); color: var(--ink); }
@@ -156,15 +157,16 @@ body:not(.home-page) footer { margin-top: 0; }
 .gallery-heading { align-items: flex-end; display: flex; justify-content: space-between; margin-bottom: 38px; }
 .gallery-heading .eyebrow { color: var(--red); }
 .gallery-heading > p:last-child { color: #716a62; font-family: 'Playfair Display', serif; font-size: 18px; }
-.gallery-grid { display: grid; gap: 18px; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 95px; }
-.gallery-item { background: #302923; border: 0; cursor: pointer; display: block; grid-column: span 4; grid-row: span 4; overflow: hidden; padding: 0; position: relative; text-align: left; }
+.gallery-grid { display: grid; gap: 24px; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 95px; }
+.gallery-item { background: #302923; border: 1px solid rgba(255,255,255,0.03); border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.35); cursor: pointer; display: block; grid-column: span 4; grid-row: span 4; overflow: hidden; padding: 0; position: relative; text-align: left; transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s; }
 .gallery-item-feature { grid-column: span 7; grid-row: span 7; }
 .gallery-item-feature img { object-fit: contain; }
 .gallery-item-wide { grid-column: span 5; grid-row: span 5; }
 .gallery-item-last { grid-column: span 5; }
-.gallery-item::after { background: linear-gradient(0deg, rgba(10,8,7,.85), transparent 55%); content: ''; inset: 0; opacity: .72; position: absolute; transition: opacity .35s; }
-.gallery-item img { display: block; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.7,.2,1), filter .4s; width: 100%; }
-.gallery-item:hover img, .gallery-item:focus-visible img { filter: saturate(1.1); transform: scale(1.055); }
+.gallery-item::after { background: linear-gradient(0deg, rgba(10,8,7,.85), transparent 55%); content: ''; inset: 0; opacity: .72; position: absolute; transition: opacity .4s ease; }
+.gallery-item img { display: block; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.4s ease; width: 100%; }
+.gallery-item:hover, .gallery-item:focus-visible { border-color: rgba(215,168,77,0.3); box-shadow: 0 20px 45px rgba(0,0,0,0.6); transform: translateY(-8px); }
+.gallery-item:hover img, .gallery-item:focus-visible img { filter: saturate(1.1); transform: scale(1.06); }
 .gallery-item:hover::after, .gallery-item:focus-visible::after { opacity: .95; }
 .gallery-caption { bottom: 0; color: var(--paper); display: grid; gap: 5px; left: 0; padding: 24px; position: absolute; right: 0; z-index: 1; }
 .gallery-caption b { color: var(--gold); font-size: 10px; font-weight: 500; letter-spacing: 2px; }
