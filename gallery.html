@@ -25,11 +25,13 @@
     <link rel="icon" type="image/webp" href="favicon.webp">
 </head>
 <body class="gallery-body">
+    <div class="film-grain" aria-hidden="true"></div>
+    <div class="scroll-progress" aria-hidden="true"></div>
     <div class="cursor-glow"></div>
     <div class="cursor-dot"></div>
-    <nav id="navbar" class="navbar scrolled" style="background: var(--glass-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border);">
+    <nav id="navbar" class="navbar scrolled">
         <div class="nav-container">
-            <a href="index.html" class="logo">
+            <a href="index.html" class="logo" aria-label="Yash Veera Films home">
                 <video class="brand-logo" autoplay muted loop playsinline poster="logo.svg" aria-label="Yash Veera Films logo"><source src="Yash Veera logo Video.mp4" type="video/mp4"></video>
                 <strong>YASH VEERA<br><small>FILMS</small></strong>
             </a>
@@ -41,7 +43,7 @@
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <a class="nav-mark" href="contact.html">Let's talk <span>â†—</span></a>
+            <a class="nav-mark" href="contact.html">Let's talk</a>
             <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
         </div>
     </nav>
@@ -50,33 +52,33 @@
         <section id="gallery" class="gallery-showcase">
             <div class="container">
                 <div class="gallery-heading reveal">
-                    <p class="eyebrow">Production stills Â· 2026</p>
+                    <p class="eyebrow">Production stills · 2026</p>
                     <p>Every frame carries a little of the journey.</p>
                 </div>
                 <div class="gallery-grid reveal">
-                    <button class="gallery-item gallery-item-feature" type="button" data-image="gallery/production-still-1.webp" data-title="A proud and memorable meeting" data-number="01" data-description="Pyarelal Gundecha had the proud honour of meeting Shri Amit Shah, one of India's most influential and respected leaders. Known for his strong leadership, vision, and unwavering commitment to the nation, Shri Amit Shah continues to inspire millions across India. For Pyarelal Gundecha, this was more than just a meetingÃ¢â‚¬â€it was a powerful and memorable moment of recognition, respect, and inspiration. Standing alongside one of the nation's strongest leaders, he carries his own identity with confidence, determination, and a bold presence. When vision meets strength, moments become memoriesÃ¢â‚¬â€and memories become history.">
+                    <button class="gallery-item gallery-item-feature" type="button" data-image="gallery/production-still-1.webp" data-title="A proud and memorable meeting" data-number="01" data-description="Pyarelal Gundecha had the proud honour of meeting Shri Amit Shah, one of India's most influential and respected leaders. Known for his strong leadership, vision, and unwavering commitment to the nation, Shri Amit Shah continues to inspire millions across India. For Pyarelal Gundecha, this was more than just a meeting — it was a powerful and memorable moment of recognition, respect, and inspiration. Standing alongside one of the nation's strongest leaders, he carries his own identity with confidence, determination, and a bold presence. When vision meets strength, moments become memories — and memories become history.">
                         <img loading="lazy" src="gallery/production-still-1.webp" alt="Pyarelal Gundecha meeting Shri Amit Shah">
-                        <span class="gallery-caption"><b>01</b><strong>A proud and memorable meeting</strong><i>Open frame â†—</i></span>
+                        <span class="gallery-caption"><b>01</b><strong>A proud and memorable meeting</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/production-still-2.webp" data-title="A meeting driven by vision" data-number="02" data-description="Producer Pyarelal Gundecha had the privilege of meeting Sanjay Kapoor to discuss his upcoming cinematic venture. A meeting driven by vision, ambition, creativity, and the passion to bring powerful stories to the screen. Pyarelal Gundecha continues to move forward with the confidence and determination of a producer who believes in creating cinema that makes an impact. Big dreams need bold vision. Great cinema needs powerful minds. And every remarkable journey begins with one meaningful meeting.">
                         <img loading="lazy" src="gallery/production-still-2.webp" alt="Producer Pyarelal Gundecha meeting Sanjay Kapoor">
-                        <span class="gallery-caption"><b>02</b><strong>A meeting driven by vision</strong><i>Open frame â†—</i></span>
+                        <span class="gallery-caption"><b>02</b><strong>A meeting driven by vision</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/production-still-3.webp" data-title="Between takes" data-number="03">
                         <img loading="lazy" src="gallery/production-still-3.webp" alt="Behind the scenes moment">
-                        <span class="gallery-caption"><b>03</b><strong>Between takes</strong><i>Open frame â†—</i></span>
+                        <span class="gallery-caption"><b>03</b><strong>Between takes</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item gallery-item-wide" type="button" data-image="gallery/production-still-4.webp" data-title="The work behind the wonder" data-number="04">
                         <img loading="lazy" src="gallery/production-still-4.webp" alt="Yash Veera Films production detail">
-                        <span class="gallery-caption"><b>04</b><strong>The work behind the wonder</strong><i>Open frame â†—</i></span>
+                        <span class="gallery-caption"><b>04</b><strong>The work behind the wonder</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/production-still-5.webp" data-title="A world in the making" data-number="05">
                         <img loading="lazy" src="gallery/production-still-5.webp" alt="Film production still">
-                        <span class="gallery-caption"><b>05</b><strong>A world in the making</strong><i>Open frame â†—</i></span>
+                        <span class="gallery-caption"><b>05</b><strong>A world in the making</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item gallery-item-last" type="button" data-image="gallery/production-still-6.webp" data-title="Hold the feeling" data-number="06">
                         <img loading="lazy" src="gallery/production-still-6.webp" alt="Final production still">
-                        <span class="gallery-caption"><b>06</b><strong>Hold the feeling</strong><i>Open frame â†—</i></span>
+                        <span class="gallery-caption"><b>06</b><strong>Hold the feeling</strong><i>Open frame</i></span>
                     </button>
                 </div>
             </div>
@@ -87,7 +89,7 @@
                 <div class="gallery-heading reveal">
                     <p class="eyebrow">Pyarelal Gundecha</p>
                     <h2>Felicitation of Honorable Officials</h2>
-                    <p style="margin-top: 1rem; color: var(--text-secondary); max-width: 800px; line-height: 1.6;">
+                    <p style="margin-top: 1rem; color: var(--muted); max-width: 800px; line-height: 1.6;">
                         <strong>Honoring Distinguished Officials with Respect and Gratitude</strong><br><br>
                         Pyarelal Gundecha takes immense pride in felicitating Honorable Officials whose exemplary leadership, dedicated public service, and commitment to the nation continue to inspire generations.<br><br>
                         It is a privilege to recognize and honor these distinguished personalities for their valuable contributions to society and their unwavering service to the people.
@@ -96,119 +98,119 @@
                 <div class="gallery-grid reveal">
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-1.jpg" data-title="Honorable Official" data-number="01">
                         <img loading="lazy" src="gallery/Honnarable/honorable-1.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>01</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>01</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-2.jpg" data-title="Honorable Official" data-number="02">
                         <img loading="lazy" src="gallery/Honnarable/honorable-2.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>02</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>02</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-3.jpg" data-title="Honorable Official" data-number="03">
                         <img loading="lazy" src="gallery/Honnarable/honorable-3.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>03</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>03</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-4.jpg" data-title="Honorable Official" data-number="04">
                         <img loading="lazy" src="gallery/Honnarable/honorable-4.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>04</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>04</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-5.jpg" data-title="Honorable Official" data-number="05">
                         <img loading="lazy" src="gallery/Honnarable/honorable-5.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>05</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>05</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-6.jpg" data-title="Honorable Official" data-number="06">
                         <img loading="lazy" src="gallery/Honnarable/honorable-6.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>06</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>06</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-7.jpg" data-title="Honorable Official" data-number="07">
                         <img loading="lazy" src="gallery/Honnarable/honorable-7.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>07</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>07</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-8.jpg" data-title="Honorable Official" data-number="08">
                         <img loading="lazy" src="gallery/Honnarable/honorable-8.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>08</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>08</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-9.jpg" data-title="Honorable Official" data-number="09">
                         <img loading="lazy" src="gallery/Honnarable/honorable-9.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>09</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>09</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-10.jpg" data-title="Honorable Official" data-number="10">
                         <img loading="lazy" src="gallery/Honnarable/honorable-10.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>10</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>10</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-11.jpg" data-title="Honorable Official" data-number="11">
                         <img loading="lazy" src="gallery/Honnarable/honorable-11.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>11</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>11</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-12.jpg" data-title="Honorable Official" data-number="12">
                         <img loading="lazy" src="gallery/Honnarable/honorable-12.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>12</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>12</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-13.jpg" data-title="Honorable Official" data-number="13">
                         <img loading="lazy" src="gallery/Honnarable/honorable-13.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>13</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>13</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-14.jpg" data-title="Honorable Official" data-number="14">
                         <img loading="lazy" src="gallery/Honnarable/honorable-14.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>14</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>14</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-15.jpg" data-title="Honorable Official" data-number="15">
                         <img loading="lazy" src="gallery/Honnarable/honorable-15.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>15</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>15</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-16.jpg" data-title="Honorable Official" data-number="16">
                         <img loading="lazy" src="gallery/Honnarable/honorable-16.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>16</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>16</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-17.jpg" data-title="Honorable Official" data-number="17">
                         <img loading="lazy" src="gallery/Honnarable/honorable-17.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>17</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>17</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-18.jpg" data-title="Honorable Official" data-number="18">
                         <img loading="lazy" src="gallery/Honnarable/honorable-18.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>18</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>18</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-19.jpg" data-title="Honorable Official" data-number="19">
                         <img loading="lazy" src="gallery/Honnarable/honorable-19.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>19</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>19</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-20.jpg" data-title="Honorable Official" data-number="20">
                         <img loading="lazy" src="gallery/Honnarable/honorable-20.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>20</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>20</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-21.jpg" data-title="Honorable Official" data-number="21">
                         <img loading="lazy" src="gallery/Honnarable/honorable-21.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>21</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>21</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-22.jpg" data-title="Honorable Official" data-number="22">
                         <img loading="lazy" src="gallery/Honnarable/honorable-22.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>22</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>22</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-23.jpg" data-title="Honorable Official" data-number="23">
                         <img loading="lazy" src="gallery/Honnarable/honorable-23.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>23</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>23</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-24.jpg" data-title="Honorable Official" data-number="24">
                         <img loading="lazy" src="gallery/Honnarable/honorable-24.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>24</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>24</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-25.jpg" data-title="Honorable Official" data-number="25">
                         <img loading="lazy" src="gallery/Honnarable/honorable-25.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>25</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>25</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-26.jpg" data-title="Honorable Official" data-number="26">
                         <img loading="lazy" src="gallery/Honnarable/honorable-26.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>26</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>26</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-27.jpg" data-title="Honorable Official" data-number="27">
                         <img loading="lazy" src="gallery/Honnarable/honorable-27.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>27</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>27</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-28.jpg" data-title="Honorable Official" data-number="28">
                         <img loading="lazy" src="gallery/Honnarable/honorable-28.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>28</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>28</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/Honnarable/honorable-29.jpg" data-title="Honorable Official" data-number="29">
                         <img loading="lazy" src="gallery/Honnarable/honorable-29.jpg" alt="Honorable Official">
-                        <span class="gallery-caption"><b>29</b><strong>Honorable Official</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>29</b><strong>Honorable Official</strong><i>Open frame</i></span>
                     </button>
                 </div>
             </div>
@@ -222,19 +224,19 @@
                 <div class="gallery-grid reveal">
                     <button class="gallery-item" type="button" data-image="gallery/pillar-1.jpg" data-title="Supporting pillar" data-number="01">
                         <img loading="lazy" src="gallery/pillar-1.jpg" alt="Supporting pillar">
-                        <span class="gallery-caption"><b>01</b><strong>Supporting pillar</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>01</b><strong>Supporting pillar</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/pillar-2.jpg" data-title="Supporting pillar" data-number="02">
                         <img loading="lazy" src="gallery/pillar-2.jpg" alt="Supporting pillar">
-                        <span class="gallery-caption"><b>02</b><strong>Supporting pillar</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>02</b><strong>Supporting pillar</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/pillar-3.jpg" data-title="Supporting pillar" data-number="03">
                         <img loading="lazy" src="gallery/pillar-3.jpg" alt="Supporting pillar">
-                        <span class="gallery-caption"><b>03</b><strong>Supporting pillar</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>03</b><strong>Supporting pillar</strong><i>Open frame</i></span>
                     </button>
                     <button class="gallery-item" type="button" data-image="gallery/pillar-4.jpg" data-title="Supporting pillar" data-number="04">
                         <img loading="lazy" src="gallery/pillar-4.jpg" alt="Supporting pillar">
-                        <span class="gallery-caption"><b>04</b><strong>Supporting pillar</strong><i>Open frame ↗</i></span>
+                        <span class="gallery-caption"><b>04</b><strong>Supporting pillar</strong><i>Open frame</i></span>
                     </button>
                 </div>
             </div>

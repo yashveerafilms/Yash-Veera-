@@ -24,34 +24,40 @@
     <link rel="canonical" href="https://yashveerafilms.com/projects.html">
     <link rel="icon" type="image/webp" href="favicon.webp">
 </head>
-<body>
+<body class="projects-body">
+    <div class="film-grain" aria-hidden="true"></div>
+    <div class="scroll-progress" aria-hidden="true"></div>
     <div class="cursor-glow"></div>
     <div class="cursor-dot"></div>
-    <nav id="navbar" class="navbar scrolled" style="background: var(--glass-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border);">
+    <nav id="navbar" class="navbar scrolled">
         <div class="nav-container">
-            <a href="index.html" class="logo">
+            <a href="index.html" class="logo" aria-label="Yash Veera Films home">
                 <video class="brand-logo" autoplay muted loop playsinline poster="logo.svg" aria-label="Yash Veera Films logo"><source src="Yash Veera logo Video.mp4" type="video/mp4"></video>
                 <strong>YASH VEERA<br><small>FILMS</small></strong>
             </a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="projects.html">Project</a></li>
+                <li><a class="active" href="projects.html">Projects</a></li>
                 <li><a href="cast.html">Cast & Crew</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
+            <a class="nav-mark" href="contact.html">Let's talk</a>
+            <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
         </div>
     </nav>
 
+    <main>
     <section id="projects" class="portfolio-section">
-        <div class="container projects-intro"><p class="eyebrow">A growing story</p><h2>Our <em>films</em></h2><p>Feature films, fresh voices, and stories made to travel.</p></div>
-        <div class="project-cards container">
+        <div class="container projects-intro reveal"><p class="eyebrow">A growing story</p><h2>Our <em>films</em></h2><p>Feature films, fresh voices, and stories made to travel.</p></div>
+        <div class="project-cards container reveal">
             <article class="project-card"><img loading="lazy" src="slider2.webp" alt="Ratna film poster"><div><p class="eyebrow">01 · Feature film</p><h3>Ratna</h3><p>Drama</p><p class="project-description"><strong>Ratna</strong> is a 1998 Indian <a href="https://en.wikipedia.org/wiki/Tamil_language" target="_blank" rel="noopener noreferrer">Tamil</a>-language <a href="https://en.wikipedia.org/wiki/Action_drama_film" target="_blank" rel="noopener noreferrer">action drama film</a> written and directed by Ilanchezhiyan. The film stars <a href="https://en.wikipedia.org/wiki/Murali_(Tamil_actor)" target="_blank" rel="noopener noreferrer">Murali</a> in a dual role, while <a href="https://en.wikipedia.org/wiki/Sangita_Madhavan_Nair" target="_blank" rel="noopener noreferrer">Sangita</a>, <a href="https://en.wikipedia.org/wiki/Revathi" target="_blank" rel="noopener noreferrer">Revathi</a> and <a href="https://en.wikipedia.org/wiki/Maheswari" target="_blank" rel="noopener noreferrer">Maheswari</a> play supporting roles. It was released on 7 May 1998.</p></div></article>
             <article class="project-card"><img loading="lazy" src="slider1.webp" alt="Unexpected film poster"><div><p class="eyebrow">02 · In production</p><h3>Unexpected</h3><p>Drama</p></div></article>
             <article class="project-card"><img loading="lazy" src="slider3.webp" alt="Balu Thambi Manasile film poster"><div><p class="eyebrow">03 · Feature film</p><h3>Balu Thambi Manasile</h3><p>Romance</p></div></article>
         </div>
     </section>
+    </main>
 
     <footer>
         <div class="container footer-top"><div class="footer-brand"><a href="index.html" class="logo"><img loading="lazy" class="brand-logo" src="about-us/yash-veera-films-logo.webp" alt="Yash Veera Films logo"><strong>YASH VEERA<br><small>FILMS</small></strong></a><p>Stories that stay.</p></div><div class="footer-links"><div><p class="eyebrow">Navigate</p><a href="projects.html">Projects</a><a href="about.html">About us</a><a href="gallery.html">Gallery</a></div><div><p class="eyebrow">Connect</p><a href="contact.html">Get in touch</a><a href="tel:+919940290000">+91 99402 90000</a><a href="mailto:yashveerafilms@gmail.com">yashveerafilms@gmail.com</a></div></div></div><div class="container footer-bottom"><span>© 2026 Yash Veera Films</span><span>Made for the big screen.</span></div>

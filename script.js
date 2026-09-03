@@ -1,81 +1,80 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Navbar glassmorphism effect
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
     const navbar = document.getElementById('navbar');
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
+    const progress = document.querySelector('.scroll-progress');
 
     if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => {
             const isOpen = navLinks.classList.toggle('open');
             menuToggle.setAttribute('aria-expanded', String(isOpen));
         });
-    }
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
-
-    // 2. Intersection Observer for scroll animations
-    const revealElements = document.querySelectorAll('.reveal');
-    const revealOptions = {
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px"
-    };
-
-    const revealOnScroll = new IntersectionObserver(function(entries, observer) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target);
-            }
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            });
         });
-    }, revealOptions);
+    }
 
-    revealElements.forEach(el => {
-        revealOnScroll.observe(el);
-    });
+    const onScrollChrome = () => {
+        if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 50);
+        if (progress) {
+            const max = document.documentElement.scrollHeight - window.innerHeight;
+            progress.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+        }
+    };
+    window.addEventListener('scroll', onScrollChrome, { passive: true });
+    onScrollChrome();
 
-    // 3. Smooth scrolling for anchor links
+    const revealElements = document.querySelectorAll('.reveal');
+    if (reduceMotion) {
+        revealElements.forEach(el => el.classList.add('active'));
+    } else {
+        const revealOnScroll = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        revealElements.forEach(el => revealOnScroll.observe(el));
+    }
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
+            if (!targetId || targetId === '#') return;
             const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
+            if (!targetElement) return;
+            e.preventDefault();
+            targetElement.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
         });
     });
 
-    // 4. Form submission handler
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = contactForm.querySelector('button');
             const originalText = btn.textContent;
-            
+
             btn.innerHTML = '<span style="letter-spacing: 5px;">TRANSMITTING...</span>';
             btn.style.opacity = '0.7';
             btn.style.pointerEvents = 'none';
-            
+
             try {
                 const formData = new FormData(contactForm);
-                const response = await fetch("https://api.web3forms.com/submit", {
-                    method: "POST",
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
                     body: formData
                 });
                 const data = await response.json();
-                
+
                 if (data.success) {
                     btn.innerHTML = '<span>TRANSMISSION RECEIVED</span>';
                     btn.style.borderColor = '#e5b85a';
@@ -94,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.style.color = 'var(--red)';
                 btn.style.background = 'rgba(166,62,43,0.1)';
             }
-            
+
             setTimeout(() => {
                 btn.textContent = originalText;
                 btn.style.borderColor = '';
@@ -106,133 +105,131 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. Custom Cursor Glow and Dot
+    const intro = document.getElementById('cinema-intro');
+    if (intro) {
+        const skipIntro = reduceMotion || sessionStorage.getItem('yvf-intro') === '1';
+        if (skipIntro) {
+            intro.remove();
+        } else {
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                intro.classList.add('done');
+                sessionStorage.setItem('yvf-intro', '1');
+                setTimeout(() => {
+                    intro.remove();
+                    document.body.style.overflow = '';
+                }, 1100);
+            }, 1600);
+        }
+    }
+
     const cursorGlow = document.querySelector('.cursor-glow');
     const cursorDot = document.querySelector('.cursor-dot');
-    
-    if (cursorGlow && cursorDot) {
-        document.addEventListener('mousemove', (e) => {
-            requestAnimationFrame(() => {
-                cursorDot.style.left = e.clientX + 'px';
-                cursorDot.style.top = e.clientY + 'px';
-                
-                // Glow follows slightly behind (handled by CSS transition on left/top)
-                cursorGlow.style.left = e.clientX + 'px';
-                cursorGlow.style.top = e.clientY + 'px';
-            });
-        });
+    if (finePointer && cursorGlow && cursorDot) {
+        document.body.classList.add('has-cursor');
+        let glowX = 0;
+        let glowY = 0;
+        let dotX = 0;
+        let dotY = 0;
+        let targetX = 0;
+        let targetY = 0;
 
-        // Expand glow on clickable elements & magnetic buttons
-        const clickables = document.querySelectorAll('a, button, .movie-card');
-        clickables.forEach(el => {
+        document.addEventListener('mousemove', (e) => {
+            targetX = e.clientX;
+            targetY = e.clientY;
+            dotX = e.clientX;
+            dotY = e.clientY;
+        }, { passive: true });
+
+        const tickCursor = () => {
+            glowX += (targetX - glowX) * 0.16;
+            glowY += (targetY - glowY) * 0.16;
+            cursorDot.style.left = `${dotX}px`;
+            cursorDot.style.top = `${dotY}px`;
+            cursorGlow.style.left = `${glowX}px`;
+            cursorGlow.style.top = `${glowY}px`;
+            requestAnimationFrame(tickCursor);
+        };
+        requestAnimationFrame(tickCursor);
+
+        document.querySelectorAll('a, button').forEach(el => {
             el.addEventListener('mouseenter', () => {
-                cursorGlow.style.width = '600px';
-                cursorGlow.style.height = '600px';
-                cursorGlow.style.background = 'radial-gradient(circle, rgba(217, 154, 44, 0.2) 0%, rgba(255,255,255,0) 70%)';
-                cursorDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                cursorDot.style.backgroundColor = 'transparent';
-                cursorDot.style.border = '1px solid var(--accent)';
+                cursorGlow.style.width = '420px';
+                cursorGlow.style.height = '420px';
+                cursorDot.style.transform = 'translate(-50%, -50%) scale(1.8)';
             });
             el.addEventListener('mouseleave', () => {
-                cursorGlow.style.width = '400px';
-                cursorGlow.style.height = '400px';
-                cursorGlow.style.background = 'radial-gradient(circle, rgba(217, 154, 44, 0.15) 0%, rgba(255,255,255,0) 70%)';
+                cursorGlow.style.width = '280px';
+                cursorGlow.style.height = '280px';
                 cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursorDot.style.backgroundColor = 'var(--accent)';
-                cursorDot.style.border = 'none';
-                
-                // Reset magnetic effect
-                if(el.tagName === 'BUTTON' || el.classList.contains('btn-primary')) {
-                    el.style.transform = 'translate(0px, 0px)';
-                }
             });
-            
-            // Magnetic effect for buttons
-            if(el.tagName === 'BUTTON' || el.classList.contains('btn-primary')) {
-                el.addEventListener('mousemove', (e) => {
-                    const rect = el.getBoundingClientRect();
-                    const h = rect.width / 2;
-                    const w = rect.height / 2;
-                    const x = e.clientX - rect.left - h;
-                    const y = e.clientY - rect.top - w;
-                    
-                    el.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-                });
-            }
         });
     }
 
-    // 6. Parallax Effect for Hero
-    const heroBg = document.getElementById('hero-bg');
-    const heroContent = document.getElementById('hero-content');
-    
-    window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        if (scrollY < window.innerHeight) {
-            requestAnimationFrame(() => {
-                if(heroBg) heroBg.style.transform = `translate(-50%, -50%) translateY(${scrollY * 0.4}px)`;
-                if(heroContent) heroContent.style.transform = `translateY(${scrollY * 0.2}px)`;
+    const magnetics = document.querySelectorAll('.contact-circle, .round-arrow, .btn-primary');
+    if (finePointer && !reduceMotion) {
+        magnetics.forEach(el => {
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                el.style.transform = `translate(${x * 0.28}px, ${y * 0.28}px)`;
             });
-        }
-    });
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = '';
+            });
+        });
+    }
 
-    // Hero Mouse Parallax
     const hero = document.getElementById('home');
-    if (hero && heroBg) {
+    const heroSlides = document.querySelector('.hero-slides');
+    if (hero && heroSlides && finePointer && !reduceMotion) {
         hero.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth - 0.5) * 20; // max 20px shift
-            const y = (e.clientY / window.innerHeight - 0.5) * 20;
-            
-            requestAnimationFrame(() => {
-                heroBg.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
-            });
+            const x = (e.clientX / window.innerWidth - 0.5) * 18;
+            const y = (e.clientY / window.innerHeight - 0.5) * 12;
+            heroSlides.style.transform = `translate(${x}px, ${y}px) scale(1.04)`;
         });
-        
         hero.addEventListener('mouseleave', () => {
-            requestAnimationFrame(() => {
-                heroBg.style.transform = `translate(-50%, -50%)`;
-            });
+            heroSlides.style.transform = '';
         });
+        heroSlides.style.transition = 'transform .6s cubic-bezier(.16,1,.3,1)';
     }
 
-    // 7. 3D Tilt Effect for Movie Cards
-    const cards = document.querySelectorAll('.movie-card');
-    cards.forEach(card => {
+    document.querySelectorAll('.project-card').forEach(card => {
+        if (!finePointer || reduceMotion) return;
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left; // x position within the element.
-            const y = e.clientY - rect.top;  // y position within the element.
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            // Calculate rotation (max 10 degrees)
-            const rotateX = ((y - centerY) / centerY) * -10;
-            const rotateY = ((x - centerX) / centerX) * 10;
-            
+            const rotateX = ((e.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * -8;
+            const rotateY = ((e.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 8;
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
         });
-        
         card.addEventListener('mouseleave', () => {
-            card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
-            // Reset transition for smooth snap back
-            card.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-        });
-        
-        card.addEventListener('mouseenter', () => {
-            // Remove transition while moving to avoid jitter
-            card.style.transition = 'none';
+            card.style.transform = '';
         });
     });
 
-    // Gallery lightbox
-    const galleryItems = document.querySelectorAll('.gallery-item');
     const galleryLightbox = document.querySelector('.gallery-lightbox');
     const lightboxImage = galleryLightbox ? galleryLightbox.querySelector('img') : null;
     const lightboxNumber = galleryLightbox ? galleryLightbox.querySelector('figcaption span') : null;
     const lightboxTitle = galleryLightbox ? galleryLightbox.querySelector('figcaption strong') : null;
     const lightboxDescription = galleryLightbox ? galleryLightbox.querySelector('figcaption p') : null;
     const lightboxClose = galleryLightbox ? galleryLightbox.querySelector('.lightbox-close') : null;
+    const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+    let lightboxIndex = 0;
+
+    function openGalleryItem(index) {
+        const item = galleryItems[index];
+        if (!galleryLightbox || !lightboxImage || !item) return;
+        lightboxIndex = index;
+        lightboxImage.src = item.dataset.image;
+        lightboxImage.alt = item.querySelector('img').alt;
+        if (lightboxNumber) lightboxNumber.textContent = `${item.dataset.number} / ${String(galleryItems.length).padStart(2, '0')}`;
+        if (lightboxTitle) lightboxTitle.textContent = item.dataset.title;
+        if (lightboxDescription) lightboxDescription.textContent = item.dataset.description || '';
+        galleryLightbox.hidden = false;
+        document.body.style.overflow = 'hidden';
+        if (lightboxClose) lightboxClose.focus();
+    }
 
     function closeGalleryLightbox() {
         if (!galleryLightbox) return;
@@ -240,29 +237,21 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = '';
     }
 
-    galleryItems.forEach(item => {
-        item.addEventListener('click', () => {
-            if (!galleryLightbox || !lightboxImage) return;
-            lightboxImage.src = item.dataset.image;
-            lightboxImage.alt = item.querySelector('img').alt;
-            lightboxNumber.textContent = `${item.dataset.number} / 06`;
-            lightboxTitle.textContent = item.dataset.title;
-            if (lightboxDescription) lightboxDescription.textContent = item.dataset.description || '';
-            galleryLightbox.hidden = false;
-            document.body.style.overflow = 'hidden';
-            lightboxClose.focus();
-        });
+    galleryItems.forEach((item, index) => {
+        item.addEventListener('click', () => openGalleryItem(index));
     });
-
     if (lightboxClose) lightboxClose.addEventListener('click', closeGalleryLightbox);
     if (galleryLightbox) galleryLightbox.addEventListener('click', event => {
         if (event.target === galleryLightbox) closeGalleryLightbox();
     });
     document.addEventListener('keydown', event => {
-        if (event.key === 'Escape') closeGalleryLightbox();
+        if (galleryLightbox && !galleryLightbox.hidden) {
+            if (event.key === 'Escape') closeGalleryLightbox();
+            if (event.key === 'ArrowRight') openGalleryItem((lightboxIndex + 1) % galleryItems.length);
+            if (event.key === 'ArrowLeft') openGalleryItem((lightboxIndex - 1 + galleryItems.length) % galleryItems.length);
+        }
     });
 
-    // Hero slideshow
     const slides = document.querySelectorAll('.hero-slide');
     const dots = document.querySelectorAll('.hero-dot');
     const counter = document.querySelector('.hero-counter');
@@ -271,9 +260,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroVideo = slides[0] ? slides[0].querySelector('video') : null;
     let currentSlide = 0;
     let sliderTimer;
+    let videoFallbackTimer;
 
     function goToSlide(index) {
         if (!slides.length) return;
+        // Cancel any pending video fallback when navigating away from slide 0
+        if (index !== 0) clearTimeout(videoFallbackTimer);
+
         const previousVideo = slides[currentSlide].querySelector('video');
         if (previousVideo) {
             previousVideo.pause();
@@ -285,8 +278,10 @@ document.addEventListener('DOMContentLoaded', () => {
         slides[currentSlide].classList.add('active');
         if (dots[currentSlide]) dots[currentSlide].classList.add('active');
         if (filmLabel) {
-            filmLabel.querySelector('strong').textContent = slides[currentSlide].dataset.title;
-            filmLabel.querySelector('small').textContent = slides[currentSlide].dataset.credit;
+            const labelStrong = filmLabel.querySelector('strong');
+            const labelSmall = filmLabel.querySelector('small');
+            if (labelStrong) labelStrong.textContent = slides[currentSlide].dataset.title || '';
+            if (labelSmall) labelSmall.textContent = slides[currentSlide].dataset.credit || '';
         }
         if (counter) counter.innerHTML = `0${currentSlide + 1} <i>/ 0${slides.length}</i>`;
         const activeVideo = slides[currentSlide].querySelector('video');
@@ -298,15 +293,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function startSlider() {
         clearInterval(sliderTimer);
-        if (slides.length > 1 && currentSlide !== 0) sliderTimer = setInterval(() => goToSlide((currentSlide + 1) % slides.length), 8000);
+        // Only auto-advance when past the intro video slide.
+        // The 'ended' event (or fallback timer) handles the transition away from slide 0.
+        if (slides.length > 1 && (currentSlide !== 0 || !heroVideo)) {
+            sliderTimer = setInterval(() => goToSlide((currentSlide + 1) % slides.length), 8000);
+        }
     }
 
-    if (heroVideo) heroVideo.addEventListener('ended', () => {
-        if (currentSlide === 0) {
+    function advanceFromVideo() {
+        clearTimeout(videoFallbackTimer);
+        if (currentSlide === 0 && slides.length > 1) {
             goToSlide(1);
             startSlider();
         }
-    });
+    }
+
+    if (heroVideo) {
+        // Primary trigger: video finishes naturally
+        heroVideo.addEventListener('ended', advanceFromVideo);
+
+        // Fallback: if autoplay is blocked or video fails to load, advance after 8 s
+        heroVideo.addEventListener('error', advanceFromVideo);
+
+        // Start playing and set a max-wait fallback in case 'ended' never fires
+        const playPromise = heroVideo.play();
+        if (playPromise !== undefined) {
+            playPromise
+                .then(() => {
+                    // Video is playing — set a safety fallback of video duration + 2 s
+                    const waitMs = heroVideo.duration
+                        ? (heroVideo.duration + 2) * 1000
+                        : 12000;
+                    videoFallbackTimer = setTimeout(advanceFromVideo, waitMs);
+
+                    // Once we know the duration, tighten the fallback
+                    heroVideo.addEventListener('loadedmetadata', () => {
+                        clearTimeout(videoFallbackTimer);
+                        videoFallbackTimer = setTimeout(advanceFromVideo, (heroVideo.duration + 2) * 1000);
+                    }, { once: true });
+                })
+                .catch(() => {
+                    // Autoplay blocked — skip straight to film stills
+                    advanceFromVideo();
+                });
+        } else {
+            // Older browser fallback
+            videoFallbackTimer = setTimeout(advanceFromVideo, 12000);
+        }
+    }
 
     dots.forEach((dot, index) => dot.addEventListener('click', () => { goToSlide(index); startSlider(); }));
     if (heroSlider) {
