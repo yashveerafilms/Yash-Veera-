@@ -260,13 +260,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroVideo = slides[0] ? slides[0].querySelector('video') : null;
     let currentSlide = 0;
     let sliderTimer;
-    let videoFallbackTimer;
 
     function goToSlide(index) {
         if (!slides.length) return;
-        // Cancel any pending video fallback when navigating away from slide 0
-        if (index !== 0) clearTimeout(videoFallbackTimer);
-
         const previousVideo = slides[currentSlide].querySelector('video');
         if (previousVideo) {
             previousVideo.pause();
@@ -293,54 +289,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function startSlider() {
         clearInterval(sliderTimer);
-        // Only auto-advance when past the intro video slide.
-        // The 'ended' event (or fallback timer) handles the transition away from slide 0.
+        // Only auto-advance when the first slide (logo video) is not active,
+        // or when there is no hero video (non-home pages). The 'ended' event
+        // on the hero video handles the transition away from slide 0.
         if (slides.length > 1 && (currentSlide !== 0 || !heroVideo)) {
             sliderTimer = setInterval(() => goToSlide((currentSlide + 1) % slides.length), 8000);
         }
     }
 
-    function advanceFromVideo() {
-        clearTimeout(videoFallbackTimer);
-        if (currentSlide === 0 && slides.length > 1) {
+    if (heroVideo) heroVideo.addEventListener('ended', () => {
+        if (currentSlide === 0) {
             goToSlide(1);
             startSlider();
         }
-    }
-
-    if (heroVideo) {
-        // Primary trigger: video finishes naturally
-        heroVideo.addEventListener('ended', advanceFromVideo);
-
-        // Fallback: if autoplay is blocked or video fails to load, advance after 8 s
-        heroVideo.addEventListener('error', advanceFromVideo);
-
-        // Start playing and set a max-wait fallback in case 'ended' never fires
-        const playPromise = heroVideo.play();
-        if (playPromise !== undefined) {
-            playPromise
-                .then(() => {
-                    // Video is playing — set a safety fallback of video duration + 2 s
-                    const waitMs = heroVideo.duration
-                        ? (heroVideo.duration + 2) * 1000
-                        : 12000;
-                    videoFallbackTimer = setTimeout(advanceFromVideo, waitMs);
-
-                    // Once we know the duration, tighten the fallback
-                    heroVideo.addEventListener('loadedmetadata', () => {
-                        clearTimeout(videoFallbackTimer);
-                        videoFallbackTimer = setTimeout(advanceFromVideo, (heroVideo.duration + 2) * 1000);
-                    }, { once: true });
-                })
-                .catch(() => {
-                    // Autoplay blocked — skip straight to film stills
-                    advanceFromVideo();
-                });
-        } else {
-            // Older browser fallback
-            videoFallbackTimer = setTimeout(advanceFromVideo, 12000);
-        }
-    }
+    });
 
     dots.forEach((dot, index) => dot.addEventListener('click', () => { goToSlide(index); startSlider(); }));
     if (heroSlider) {
