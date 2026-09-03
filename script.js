@@ -20,14 +20,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Throttle scroll handler via rAF so it runs at most once per frame
+    let scrollRafPending = false;
     const onScrollChrome = () => {
         if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 50);
         if (progress) {
             const max = document.documentElement.scrollHeight - window.innerHeight;
             progress.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
         }
+        scrollRafPending = false;
     };
-    window.addEventListener('scroll', onScrollChrome, { passive: true });
+    window.addEventListener('scroll', () => {
+        if (!scrollRafPending) {
+            scrollRafPending = true;
+            requestAnimationFrame(onScrollChrome);
+        }
+    }, { passive: true });
     onScrollChrome();
 
     const revealElements = document.querySelectorAll('.reveal');
@@ -133,21 +141,34 @@ document.addEventListener('DOMContentLoaded', () => {
         let dotY = 0;
         let targetX = 0;
         let targetY = 0;
+        let cursorDirty = false;
 
         document.addEventListener('mousemove', (e) => {
             targetX = e.clientX;
             targetY = e.clientY;
             dotX = e.clientX;
             dotY = e.clientY;
+            cursorDirty = true;
         }, { passive: true });
 
         const tickCursor = () => {
-            glowX += (targetX - glowX) * 0.16;
-            glowY += (targetY - glowY) * 0.16;
-            cursorDot.style.left = `${dotX}px`;
-            cursorDot.style.top = `${dotY}px`;
-            cursorGlow.style.left = `${glowX}px`;
-            cursorGlow.style.top = `${glowY}px`;
+            if (cursorDirty) {
+                // Dot follows instantly — always update when dirty
+                const dotScale = cursorDot.dataset.scale || '1';
+                cursorDot.style.transform = `translate(calc(${dotX}px - 50%), calc(${dotY}px - 50%)) scale(${dotScale})`;
+
+                // Glow trails with spring easing
+                const newGlowX = glowX + (targetX - glowX) * 0.16;
+                const newGlowY = glowY + (targetY - glowY) * 0.16;
+                glowX = newGlowX;
+                glowY = newGlowY;
+                cursorGlow.style.transform = `translate(calc(${glowX}px - 50%), calc(${glowY}px - 50%))`;
+
+                // Stop dirty writes once glow has settled within 0.1px
+                if (Math.abs(targetX - glowX) < 0.1 && Math.abs(targetY - glowY) < 0.1) {
+                    cursorDirty = false;
+                }
+            }
             requestAnimationFrame(tickCursor);
         };
         requestAnimationFrame(tickCursor);
@@ -156,12 +177,12 @@ document.addEventListener('DOMContentLoaded', () => {
             el.addEventListener('mouseenter', () => {
                 cursorGlow.style.width = '420px';
                 cursorGlow.style.height = '420px';
-                cursorDot.style.transform = 'translate(-50%, -50%) scale(1.8)';
+                cursorDot.dataset.scale = '1.8';
             });
             el.addEventListener('mouseleave', () => {
                 cursorGlow.style.width = '280px';
                 cursorGlow.style.height = '280px';
-                cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursorDot.dataset.scale = '1';
             });
         });
     }

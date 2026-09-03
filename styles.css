@@ -351,6 +351,8 @@ body.gallery-body .gallery-showcase { padding: 85px 0 125px; }
     mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     animation: grain-shift 1.2s steps(4) infinite;
+    will-change: transform;
+    transform: translateZ(0);
 }
 .scroll-progress {
     background: var(--gold);
@@ -469,8 +471,8 @@ body.contact-body .contact-info { border-color: rgba(240,237,231,.28); }
         top: 0;
         left: 0;
         z-index: 130;
-        transform: translate(-50%, -50%);
         border-radius: 50%;
+        will-change: transform;
     }
     .cursor-glow {
         background: radial-gradient(circle, rgba(215,168,77,.16) 0%, transparent 70%);
@@ -493,4 +495,63 @@ body.contact-body .contact-info { border-color: rgba(240,237,231,.28); }
         transition: none;
     }
     .cinema-intro { display: none; }
+}
+
+/* ============================================================
+   PERFORMANCE OPTIMIZATIONS
+   ============================================================ */
+
+/* GPU-promote layers that animate frequently */
+.hero-slide {
+    will-change: opacity, transform;
+}
+.hero-slide img,
+.hero-slide video {
+    will-change: transform;
+}
+.scroll-progress {
+    will-change: transform;
+}
+.cinema-intro {
+    will-change: transform;
+}
+.reveal {
+    will-change: opacity, transform;
+}
+/* Cursor uses CSS transform for positioning — promotes to own compositor layer */
+.cursor-glow,
+.cursor-dot {
+    will-change: transform;
+}
+
+/* Contain paint for self-contained card/item components.
+   Use paint only (not layout) so padding transitions on .film-row still work. */
+.project-card,
+.gallery-item,
+.journal-grid article,
+.home-gallery-grid a {
+    contain: paint;
+}
+
+/* Skip rendering off-screen sections until they near the viewport.
+   Only apply to sections that are never visible on first load.
+   Avoid applying to .gallery-showcase since it appears near the top on gallery page. */
+.manifesto-section,
+.films-section,
+.studio-section,
+.home-gallery-section,
+.people-section,
+.journal-section,
+.home-contact-section,
+.about-signature {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 600px;
+}
+/* release-section is the first visible content on home — never skip it */
+.release-section {
+    content-visibility: visible;
+}
+/* home-hero is always in view */
+.home-hero {
+    content-visibility: visible;
 }
