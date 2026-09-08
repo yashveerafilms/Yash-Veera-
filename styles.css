@@ -285,6 +285,14 @@ body.about-body .about-signature { padding: 85px 0 !important; }
     .gallery-item-wide { grid-column: span 4; grid-row: span 4; }
     .gallery-item-last { grid-column: span 4; }
 }
+
+/* Tablet: reduce oversized gallery intro hero */
+@media (min-width: 801px) and (max-width: 1100px) {
+    body.gallery-body .gallery-intro { min-height: 0 !important; padding: 55px 0 45px !important; }
+    .gallery-intro h1 { font-size: clamp(42px, 6vw, 72px); }
+    .gallery-intro-inner { gap: 24px; }
+    .gallery-index { font-size: 22px; }
+}
 .projects-intro h2 { color: var(--paper); font-size: clamp(52px, 8vw, 100px); line-height: .95; margin: 20px 0; }
 .projects-intro > p:last-child { color: var(--muted); font-size: 16px; }
 .project-cards { display: grid; gap: 25px; grid-template-columns: repeat(3, 1fr); padding-bottom: 110px; }
