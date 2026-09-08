@@ -50,7 +50,7 @@ a { color: inherit; text-decoration: none; }
 .hero-dot.active { background: var(--gold); transform: scale(1.5); }
 .hero-counter { color: var(--paper); font-size: 10px; letter-spacing: 1px; margin-left: 8px; }
 .hero-counter i { color: var(--muted); font-style: normal; }
-.hero-copy { bottom: 58px; left: max(48px, calc((100% - 1200px) / 2)); max-width: 430px; position: absolute; z-index: 2; }
+.hero-copy { bottom: 80px; left: max(48px, calc((100% - 1200px) / 2)); max-width: 520px; position: absolute; z-index: 3; display: none; }
 .eyebrow { color: var(--gold); font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; }
 h1, h2, h3 { font-family: 'Playfair Display', serif; }
 h1 { max-width: 700px; font-size: clamp(52px, 6vw, 88px); line-height: .9; letter-spacing: -3px; margin: 18px 0 22px; }
@@ -99,7 +99,7 @@ h1 em, h2 em { color: var(--gold); font-style: italic; font-weight: 600; }
 .home-gallery-grid { display: grid; gap: 24px; grid-template-columns: 1.35fr .8fr .8fr; }
 .home-gallery-grid a { border-radius: 16px; box-shadow: 0 12px 35px rgba(0,0,0,0.4); height: 360px; overflow: hidden; position: relative; transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
 .home-gallery-grid a:first-child { height: 440px; }
-.home-gallery-grid img { background: #302923; height: 100%; object-fit: contain; object-position: center; transition: transform .8s cubic-bezier(0.2, 0.8, 0.2, 1); width: 100%; }
+.home-gallery-grid img { background: #302923; height: 100%; object-fit: cover; object-position: center; transition: transform .8s cubic-bezier(0.2, 0.8, 0.2, 1); width: 100%; }
 .home-gallery-grid a:hover { box-shadow: 0 20px 45px rgba(0,0,0,0.65); transform: translateY(-8px); }
 .home-gallery-grid a:hover img { transform: scale(1.06); }
 .home-gallery-grid a::after { background: linear-gradient(0deg, rgba(0,0,0,.65), transparent 55%); content: ''; inset: 0; position: absolute; }
@@ -123,7 +123,7 @@ h1 em, h2 em { color: var(--gold); font-style: italic; font-weight: 600; }
 .film-row p { color: var(--muted); font-size: 11px; letter-spacing: 1px; margin-top: 5px; text-transform: uppercase; }
 .film-arrow { color: var(--gold); font-size: 25px; text-align: right; }
 .journal-grid { display: grid; gap: 45px; grid-template-columns: 1fr 1fr; }
-.journal-grid article img { background: #e8e3db; display: block; filter: saturate(.7); height: min(58vh, 560px); object-fit: contain; width: 100%; }
+.journal-grid article img { background: #e8e3db; display: block; filter: saturate(.7); height: min(58vh, 560px); object-fit: cover; object-position: center top; width: 100%; }
 .journal-grid article .eyebrow { color: var(--red); margin-top: 25px; }
 .journal-grid h3 { font-size: 31px; line-height: 1.1; margin: 12px 0; }
 .read-more { border-bottom: 1px solid var(--red); color: var(--red); font-size: 11px; padding-bottom: 7px; text-transform: uppercase; }
@@ -404,9 +404,7 @@ body.gallery-body .gallery-showcase { padding: 85px 0 125px; }
     transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1);
 }
 .reveal.active { opacity: 1; transform: none; }
-.hero-copy { z-index: 3; }
-.hero-film-label { z-index: 3; }
-.hero-controls { z-index: 3; }
+/* hero-copy, hero-film-label, hero-controls z-index already set in their base rules */
 .round-arrow, .contact-circle, .nav-mark, .text-link, .btn-primary {
     transition: transform .35s cubic-bezier(.16,1,.3,1), background .3s, color .3s, border-color .3s;
 }
@@ -554,4 +552,353 @@ body.contact-body .contact-info { border-color: rgba(240,237,231,.28); }
 /* home-hero is always in view */
 .home-hero {
     content-visibility: visible;
+}
+
+
+/* ============================================================
+   HOMEPAGE ANIMATION UPGRADES
+   ============================================================ */
+
+/* ── Cinema intro loading bar ── */
+.cinema-intro-bar {
+    background: rgba(240,237,231,.15);
+    border-radius: 2px;
+    bottom: 52px;
+    height: 2px;
+    left: 50%;
+    overflow: hidden;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 120px;
+}
+.cinema-intro-bar::after {
+    animation: intro-bar-fill 1.45s cubic-bezier(.4,0,.2,1) forwards;
+    background: var(--gold);
+    content: '';
+    display: block;
+    height: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    width: 100%;
+}
+@keyframes intro-bar-fill {
+    0%   { transform: scaleX(0); }
+    100% { transform: scaleX(1); }
+}
+
+/* ── Hero scanline ── */
+.hero-scanline {
+    animation: scanline-move 6s linear infinite;
+    background: linear-gradient(transparent, rgba(215,168,77,.06) 50%, transparent);
+    height: 120px;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+}
+@keyframes scanline-move {
+    0%   { top: -120px; }
+    100% { top: 110%; }
+}
+
+/* ── Hero copy text animations ── */
+/* base positioning already set above in original rules */
+
+/* Eyebrow slide in */
+.hero-eyebrow {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity .6s ease .15s, transform .6s cubic-bezier(.16,1,.3,1) .15s;
+}
+.hero-copy-ready .hero-eyebrow {
+    opacity: 1;
+    transform: none;
+}
+
+/* Headline lines — each line clips up from below */
+.hero-headline {
+    overflow: hidden;
+}
+.hero-line {
+    display: block;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity .01s linear, transform .85s cubic-bezier(.16,1,.3,1);
+}
+.hero-line[data-line="0"] { transition-delay: .35s; }
+.hero-line[data-line="1"] { transition-delay: .52s; }
+.hero-copy-ready .hero-line {
+    opacity: 1;
+    transform: none;
+}
+
+/* Intro text & CTA */
+.hero-intro-anim {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .7s ease .75s, transform .7s cubic-bezier(.16,1,.3,1) .75s;
+}
+.hero-cta-anim {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .7s ease .95s, transform .7s cubic-bezier(.16,1,.3,1) .95s;
+}
+.hero-copy-ready .hero-intro-anim,
+.hero-copy-ready .hero-cta-anim {
+    opacity: 1;
+    transform: none;
+}
+
+/* Show hero copy on desktop only */
+@media (min-width: 801px) {
+    .hero-copy { display: block; }
+    /* The mobile @media(max-width:800px) rule inside the big block also sets display:none which is fine */
+}
+
+/* ── Marquee ticker strip ── */
+.marquee-strip {
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    overflow: hidden;
+    padding: 13px 0;
+    position: relative;
+    text-transform: uppercase;
+    white-space: nowrap;
+    z-index: 5;
+}
+.marquee-track {
+    animation: marquee-scroll 28s linear infinite;
+    display: inline-block;
+    will-change: transform;
+}
+.marquee-strip:hover .marquee-track {
+    animation-play-state: paused;
+}
+.marquee-track span {
+    display: inline-block;
+    padding: 0 22px;
+}
+.marquee-track .marquee-dot {
+    color: var(--red);
+    font-size: 8px;
+    padding: 0 4px;
+    vertical-align: middle;
+}
+@keyframes marquee-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ── Staggered reveal ── */
+.reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
+}
+.reveal-stagger.active > *:nth-child(1) { transition-delay: .05s; }
+.reveal-stagger.active > *:nth-child(2) { transition-delay: .18s; }
+.reveal-stagger.active > *:nth-child(3) { transition-delay: .31s; }
+.reveal-stagger.active > *:nth-child(4) { transition-delay: .44s; }
+.reveal-stagger.active > *:nth-child(5) { transition-delay: .57s; }
+.reveal-stagger.active > * {
+    opacity: 1;
+    transform: none;
+}
+
+/* ── Scale-up reveal for the poster image ── */
+.reveal-scale {
+    opacity: 0;
+    transform: scale(.94) translateY(20px);
+    transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1);
+}
+.reveal-scale.active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+/* ── Parallax on release poster ── */
+.release-feature img {
+    will-change: transform;
+}
+
+/* ── Counter number ── */
+.studio-stat-line {
+    align-items: baseline;
+    display: flex;
+    gap: 18px;
+    margin-bottom: 22px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0; /* collapse inherited size; children set their own */
+}
+.counter-number {
+    color: var(--red);
+    display: inline-block;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(64px, 9vw, 110px);
+    font-weight: 700;
+    line-height: 1;
+    will-change: contents;
+}
+.studio-stat-label {
+    color: #716a62;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+/* ── Manifesto spotlight sweep ── */
+.manifesto-section {
+    position: relative;
+    overflow: hidden;
+}
+.manifesto-spotlight {
+    animation: spotlight-sweep 7s cubic-bezier(.4,0,.6,1) infinite;
+    background: radial-gradient(ellipse 520px 380px at 50% 50%, rgba(255,255,255,.10), transparent 70%);
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 0;
+}
+.manifesto-section .container {
+    position: relative;
+    z-index: 1;
+}
+@keyframes spotlight-sweep {
+    0%   { transform: translate(-30%, -20%) scale(1); opacity: .6; }
+    35%  { transform: translate(20%, 10%) scale(1.15); opacity: 1; }
+    70%  { transform: translate(-10%, 30%) scale(.9); opacity: .7; }
+    100% { transform: translate(-30%, -20%) scale(1); opacity: .6; }
+}
+
+/* ── Film-strip border on gallery grid ── */
+.film-strip-border {
+    padding-top: 22px;
+    position: relative;
+}
+.film-strip-border::before,
+.film-strip-border::after {
+    animation: strip-pulse 2.5s ease-in-out infinite alternate;
+    background-image: repeating-linear-gradient(
+        90deg,
+        var(--gold) 0px,
+        var(--gold) 18px,
+        transparent 18px,
+        transparent 30px
+    );
+    content: '';
+    height: 6px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+.film-strip-border::before { top: 0; }
+.film-strip-border::after { bottom: 0; }
+@keyframes strip-pulse {
+    0%   { opacity: .35; }
+    100% { opacity: .85; }
+}
+
+/* ── Page transition overlay ── */
+.page-transition {
+    background: var(--ink);
+    inset: 0;
+    pointer-events: none;
+    position: fixed;
+    transform: translateY(100%);
+    z-index: 200;
+    transition: transform .55s cubic-bezier(.77,0,.18,1);
+}
+.page-transition.exit {
+    pointer-events: all;
+    transform: translateY(0);
+}
+
+/* ── Film row entrance ── */
+.film-list .film-row {
+    opacity: 0;
+    transform: translateX(-22px);
+    /* keep the original hover transitions AND add entrance transitions */
+    transition: opacity .6s cubic-bezier(.16,1,.3,1),
+                transform .6s cubic-bezier(.16,1,.3,1),
+                background .3s,
+                padding .3s;
+}
+.film-list.active .film-row:nth-child(1) { transition-delay: .06s; }
+.film-list.active .film-row:nth-child(2) { transition-delay: .18s; }
+.film-list.active .film-row:nth-child(3) { transition-delay: .30s; }
+.film-list.active .film-row {
+    opacity: 1;
+    transform: none;
+}
+
+/* ── Film row arrow pulse on hover ── */
+.film-row .film-arrow {
+    display: inline-block;
+    transition: transform .3s cubic-bezier(.16,1,.3,1), color .2s;
+}
+.film-row:hover .film-arrow {
+    transform: translateX(6px);
+}
+
+/* ── Hero film label slide-in ── */
+.hero-film-label {
+    animation: label-slide-in .8s cubic-bezier(.16,1,.3,1) 2.2s both;
+}
+@keyframes label-slide-in {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: none; }
+}
+
+/* ── Hero scroll indicator bounce ── */
+.hero-scroll {
+    animation: scroll-bounce 2.2s ease-in-out infinite;
+}
+@keyframes scroll-bounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(5px); }
+}
+
+/* ── Hero dot active glow ── */
+.hero-dot.active {
+    box-shadow: 0 0 0 3px rgba(215,168,77,.35);
+}
+
+/* ── Reduced motion: strip all new animations ── */
+@media (prefers-reduced-motion: reduce) {
+    .cinema-intro-bar::after,
+    .hero-scanline,
+    .marquee-track,
+    .manifesto-spotlight,
+    .film-strip-border::before,
+    .film-strip-border::after,
+    .hero-scroll,
+    .hero-film-label {
+        animation: none !important;
+    }
+    .hero-eyebrow,
+    .hero-line,
+    .hero-intro-anim,
+    .hero-cta-anim,
+    .reveal-stagger > *,
+    .reveal-scale,
+    .film-list .film-row {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+    .page-transition { display: none; }
+}
+
+@media (max-width: 800px) {
+    .hero-copy { display: none; }
+    .hero-scanline { display: none; }
+    .marquee-strip { font-size: 10px; padding: 10px 0; }
+    .studio-stat-line { gap: 12px; }
+    .counter-number { font-size: clamp(52px, 14vw, 80px); }
+    .film-strip-border { padding-top: 14px; }
 }
