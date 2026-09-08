@@ -777,8 +777,8 @@ body.contact-body .contact-info { border-color: rgba(240,237,231,.28); }
 
 /* ── Film-strip border on gallery grid ── */
 .film-strip-border {
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     position: relative;
 }
 .film-strip-border::before,
@@ -902,5 +902,5 @@ body.contact-body .contact-info { border-color: rgba(240,237,231,.28); }
     .marquee-strip { font-size: 10px; padding: 10px 0; }
     .studio-stat-line { gap: 12px; }
     .counter-number { font-size: clamp(52px, 14vw, 80px); }
-    .film-strip-border { padding-top: 10px; padding-bottom: 10px; }
+    .film-strip-border { padding-top: 8px; padding-bottom: 8px; }
 }
