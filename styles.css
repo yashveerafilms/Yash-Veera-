@@ -96,10 +96,10 @@ h1 em, h2 em { color: var(--gold); font-style: italic; font-weight: 600; }
 .studio-copy .text-link, .people-copy .text-link { border-color: var(--red); color: var(--ink); }
 .home-gallery-section { background: #25201c; }
 .home-gallery-section .section-heading h2 { color: var(--paper); }
-.home-gallery-grid { display: grid; gap: 16px; grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-.home-gallery-grid a { border-radius: 12px; box-shadow: 0 12px 35px rgba(0,0,0,0.4); aspect-ratio: 4 / 3; overflow: hidden; position: relative; transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+.home-gallery-grid { display: grid; gap: 16px; grid-template-columns: 1fr 1fr; grid-template-rows: 320px 320px; }
+.home-gallery-grid a { border-radius: 12px; box-shadow: 0 12px 35px rgba(0,0,0,0.4); overflow: hidden; position: relative; transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
 .home-gallery-grid a:first-child { grid-column: unset; height: unset; }
-.home-gallery-grid img { background: #302923; height: 100%; object-fit: cover; object-position: center top; transition: transform .8s cubic-bezier(0.2, 0.8, 0.2, 1); width: 100%; }
+.home-gallery-grid img { background: #302923; height: 100%; object-fit: cover; object-position: center 20%; transition: transform .8s cubic-bezier(0.2, 0.8, 0.2, 1); width: 100%; }
 .home-gallery-grid a:hover { box-shadow: 0 20px 45px rgba(0,0,0,0.65); transform: translateY(-6px); }
 .home-gallery-grid a:hover img { transform: scale(1.05); }
 .home-gallery-grid a::after { background: linear-gradient(0deg, rgba(0,0,0,.65), transparent 55%); content: ''; inset: 0; position: absolute; }
@@ -276,8 +276,8 @@ body.about-body .text-link:hover { color: var(--red); }
     .studio-grid, .people-grid { display: block; }
     .studio-copy, .people-copy { margin-top: 38px; }
     .studio-copy > p, .people-copy > p { font-size: 21px; }
-    .home-gallery-grid { gap: 10px; grid-template-columns: 1fr 1fr; }
-    .home-gallery-grid a { aspect-ratio: 4 / 3; height: unset; }
+    .home-gallery-grid { gap: 10px; grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px; }
+    .home-gallery-grid a { aspect-ratio: unset; height: unset; }
     .home-gallery-grid a:first-child { grid-column: unset; height: unset; }
     .home-gallery-grid span { bottom: 13px; left: 14px; }
     .home-contact { align-items: flex-start; display: flex; gap: 40px; }
