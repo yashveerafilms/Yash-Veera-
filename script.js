@@ -6,22 +6,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // ─────────────────────────────────────────────
     // NAVBAR — mobile toggle + scroll class
     // ─────────────────────────────────────────────
-    const navbar     = document.getElementById('navbar');
-    const menuToggle = document.querySelector('.menu-toggle');
+    const navbar       = document.getElementById('navbar');
+    const menuToggle   = document.querySelector('.menu-toggle');
     const navLinksList = document.querySelector('.nav-links');
-    const progress   = document.querySelector('.scroll-progress');
+    const navMark      = document.querySelector('.nav-mark');
+    const progress     = document.querySelector('.scroll-progress');
+
+    function closeMenu() {
+        navLinksList?.classList.remove('open');
+        menuToggle?.setAttribute('aria-expanded', 'false');
+    }
 
     if (menuToggle && navLinksList) {
         menuToggle.addEventListener('click', () => {
             const isOpen = navLinksList.classList.toggle('open');
             menuToggle.setAttribute('aria-expanded', String(isOpen));
         });
+        // Close on any nav link click (including nav-mark "Let's talk")
         navLinksList.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinksList.classList.remove('open');
-                menuToggle.setAttribute('aria-expanded', 'false');
-            });
+            link.addEventListener('click', closeMenu);
         });
+    }
+    // FIX #8: nav-mark "Let's talk" is outside nav-links — close menu when clicked too
+    if (navMark) {
+        navMark.addEventListener('click', closeMenu);
     }
 
     let scrollRafPending = false;
@@ -49,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isHomePage) triggerHeroCopy();
         } else {
             document.body.style.overflow = 'hidden';
-            // Intro exits after 1700ms, then hero copy animates in
             setTimeout(() => {
                 intro.classList.add('done');
                 sessionStorage.setItem('yvf-intro', '1');
@@ -71,12 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (reduceMotion) return;
         const heroCopy = document.getElementById('hero-copy');
         if (!heroCopy) return;
-        // Small delay so the intro wipe has cleared
         setTimeout(() => heroCopy.classList.add('hero-copy-ready'), 120);
     }
 
     // ─────────────────────────────────────────────
-    // SCROLL REVEALS — standard + stagger + scale + film-list
+    // SCROLL REVEALS
     // ─────────────────────────────────────────────
     const allRevealEls = document.querySelectorAll('.reveal, .reveal-stagger, .reveal-scale, .film-list');
 
@@ -96,31 +102,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ─────────────────────────────────────────────
-    // COUNTER ANIMATION — 0 → target number
+    // COUNTER ANIMATION
     // ─────────────────────────────────────────────
     const counterEls = document.querySelectorAll('.counter-number');
     if (counterEls.length && !reduceMotion) {
         const counterObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (!entry.isIntersecting) return;
-                const el     = entry.target;
-                const target = parseInt(el.dataset.target, 10);
-                const suffix = el.dataset.suffix || '';
-                const duration = 1800; // ms
+                const el       = entry.target;
+                const target   = parseInt(el.dataset.target, 10);
+                const suffix   = el.dataset.suffix || '';
+                const duration = 1800;
                 const startTime = performance.now();
 
                 function easeOutExpo(t) {
                     return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
                 }
-
                 function tick(now) {
                     const elapsed  = now - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
-                    const value    = Math.round(easeOutExpo(progress) * target);
-                    el.textContent = value + suffix;
-                    if (progress < 1) requestAnimationFrame(tick);
+                    const prog     = Math.min(elapsed / duration, 1);
+                    el.textContent = Math.round(easeOutExpo(prog) * target) + suffix;
+                    if (prog < 1) requestAnimationFrame(tick);
                 }
-
                 requestAnimationFrame(tick);
                 observer.unobserve(el);
             });
@@ -128,7 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         counterEls.forEach(el => counterObserver.observe(el));
     } else {
-        // No animation — just show final value
         counterEls.forEach(el => {
             el.textContent = el.dataset.target + (el.dataset.suffix || '');
         });
@@ -148,7 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const center = rect.top + rect.height / 2 - window.innerHeight / 2;
                 const img    = releaseFeature.querySelector('img');
                 if (img) {
-                    // Moves up to ±22px vertically as the section scrolls through view
                     const shift = (center / window.innerHeight) * 22;
                     img.style.transform = `translateY(${shift}px) scale(1.06)`;
                 }
@@ -158,9 +159,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ─────────────────────────────────────────────
-    // MANIFESTO SPOTLIGHT — follows mouse on desktop
+    // MANIFESTO SPOTLIGHT
     // ─────────────────────────────────────────────
-    const manifestoSection  = document.querySelector('.manifesto-section');
+    const manifestoSection   = document.querySelector('.manifesto-section');
     const manifestoSpotlight = document.querySelector('.manifesto-spotlight');
     if (manifestoSection && manifestoSpotlight && finePointer && !reduceMotion) {
         manifestoSection.addEventListener('mousemove', (e) => {
@@ -171,13 +172,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 `radial-gradient(ellipse 520px 380px at ${x}% ${y}%, rgba(255,255,255,.14), transparent 70%)`;
         });
         manifestoSection.addEventListener('mouseleave', () => {
-            // Drift back to CSS animation
             manifestoSpotlight.style.background = '';
         });
     }
 
     // ─────────────────────────────────────────────
-    // SMOOTH ANCHOR SCROLLING — must register BEFORE page transition
+    // SMOOTH ANCHOR SCROLLING — register BEFORE page transition
     // ─────────────────────────────────────────────
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -192,14 +192,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ─────────────────────────────────────────────
-    // PAGE TRANSITION — fade-out wipe on link clicks
-    // Only fires for same-origin .html page navigations
+    // PAGE TRANSITION
+    // FIX #1/#7: bfcache blank page + instant reset on enter
     // ─────────────────────────────────────────────
     const pageTransition = document.getElementById('page-transition');
     if (pageTransition && !reduceMotion) {
         document.querySelectorAll('a[href]').forEach(link => {
             const href = link.getAttribute('href');
-            // Skip: empty, anchors, mailto, tel, external URLs
             if (!href) return;
             if (href.startsWith('#')) return;
             if (href.startsWith('mailto:') || href.startsWith('tel:')) return;
@@ -212,8 +211,18 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Remove exit class on load so entering pages always start clean
-        requestAnimationFrame(() => pageTransition.classList.remove('exit'));
+        // Remove exit class immediately (no transition) so entering pages start clean
+        pageTransition.classList.remove('exit');
+
+        // FIX #1: bfcache restore — browser back/forward shows the page with
+        // the overlay still in exit state. pageshow(e.persisted) fires on restore.
+        window.addEventListener('pageshow', (e) => {
+            if (e.persisted) {
+                pageTransition.classList.remove('exit');
+                // FIX #2: also restore scroll if it was locked when navigating away
+                document.body.style.overflow = '';
+            }
+        });
     }
 
     // ─────────────────────────────────────────────
@@ -223,35 +232,35 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const btn = contactForm.querySelector('button');
+            const btn          = contactForm.querySelector('button');
             const originalText = btn.textContent;
 
-            btn.innerHTML = '<span style="letter-spacing:5px;">TRANSMITTING...</span>';
+            btn.innerHTML     = '<span style="letter-spacing:5px;">TRANSMITTING...</span>';
             btn.style.opacity = '0.7';
             btn.style.pointerEvents = 'none';
 
             try {
                 const formData = new FormData(contactForm);
                 const response = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData });
-                const data = await response.json();
+                const data     = await response.json();
 
                 if (data.success) {
-                    btn.innerHTML = '<span>TRANSMISSION RECEIVED ✓</span>';
+                    btn.innerHTML        = '<span>TRANSMISSION RECEIVED ✓</span>';
                     btn.style.borderColor = '#e5b85a';
-                    btn.style.color = '#e5b85a';
-                    btn.style.background = 'rgba(229,184,90,0.1)';
+                    btn.style.color       = '#e5b85a';
+                    btn.style.background  = 'rgba(229,184,90,0.1)';
                     contactForm.reset();
                 } else {
-                    btn.innerHTML = '<span>TRANSMISSION FAILED</span>';
+                    btn.innerHTML        = '<span>TRANSMISSION FAILED</span>';
                     btn.style.borderColor = 'var(--red)';
-                    btn.style.color = 'var(--red)';
-                    btn.style.background = 'rgba(166,62,43,0.1)';
+                    btn.style.color       = 'var(--red)';
+                    btn.style.background  = 'rgba(166,62,43,0.1)';
                 }
             } catch {
-                btn.innerHTML = '<span>TRANSMISSION FAILED</span>';
+                btn.innerHTML        = '<span>TRANSMISSION FAILED</span>';
                 btn.style.borderColor = 'var(--red)';
-                btn.style.color = 'var(--red)';
-                btn.style.background = 'rgba(166,62,43,0.1)';
+                btn.style.color       = 'var(--red)';
+                btn.style.background  = 'rgba(166,62,43,0.1)';
             }
 
             setTimeout(() => {
@@ -283,12 +292,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const tickCursor = () => {
             if (cursorDirty) {
                 const dotScale = cursorDot.dataset.scale || '1';
-                cursorDot.style.transform = `translate(calc(${dotX}px - 50%), calc(${dotY}px - 50%)) scale(${dotScale})`;
-
+                cursorDot.style.transform  = `translate(calc(${dotX}px - 50%), calc(${dotY}px - 50%)) scale(${dotScale})`;
                 glowX += (targetX - glowX) * 0.16;
                 glowY += (targetY - glowY) * 0.16;
                 cursorGlow.style.transform = `translate(calc(${glowX}px - 50%), calc(${glowY}px - 50%))`;
-
                 if (Math.abs(targetX - glowX) < 0.1 && Math.abs(targetY - glowY) < 0.1) {
                     cursorDirty = false;
                 }
@@ -299,12 +306,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.querySelectorAll('a, button').forEach(el => {
             el.addEventListener('mouseenter', () => {
-                cursorGlow.style.width = '420px';
+                cursorGlow.style.width  = '420px';
                 cursorGlow.style.height = '420px';
                 cursorDot.dataset.scale = '1.8';
             });
             el.addEventListener('mouseleave', () => {
-                cursorGlow.style.width = '280px';
+                cursorGlow.style.width  = '280px';
                 cursorGlow.style.height = '280px';
                 cursorDot.dataset.scale = '1';
             });
@@ -329,7 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ─────────────────────────────────────────────
     // HERO PARALLAX — mouse-move depth effect
     // ─────────────────────────────────────────────
-    const hero = document.getElementById('home');
+    const hero        = document.getElementById('home');
     const heroSlidesEl = document.querySelector('.hero-slides');
     if (hero && heroSlidesEl && finePointer && !reduceMotion) {
         heroSlidesEl.style.transition = 'transform .6s cubic-bezier(.16,1,.3,1)';
@@ -358,25 +365,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ─────────────────────────────────────────────
     // GALLERY LIGHTBOX
+    // FIX #2/#3: scroll lock + scrollable lightbox on desktop
     // ─────────────────────────────────────────────
-    const galleryLightbox    = document.querySelector('.gallery-lightbox');
-    const lightboxImage      = galleryLightbox?.querySelector('img');
-    const lightboxNumber     = galleryLightbox?.querySelector('figcaption span');
-    const lightboxTitle      = galleryLightbox?.querySelector('figcaption strong');
+    const galleryLightbox     = document.querySelector('.gallery-lightbox');
+    const lightboxImage       = galleryLightbox?.querySelector('img');
+    const lightboxNumber      = galleryLightbox?.querySelector('figcaption span');
+    const lightboxTitle       = galleryLightbox?.querySelector('figcaption strong');
     const lightboxDescription = galleryLightbox?.querySelector('figcaption p');
-    const lightboxClose      = galleryLightbox?.querySelector('.lightbox-close');
-    const galleryItems       = Array.from(document.querySelectorAll('.gallery-item'));
+    const lightboxClose       = galleryLightbox?.querySelector('.lightbox-close');
+    const galleryItems        = Array.from(document.querySelectorAll('.gallery-item'));
     let lightboxIndex = 0;
 
     function openGalleryItem(index) {
         const item = galleryItems[index];
         if (!galleryLightbox || !lightboxImage || !item) return;
         lightboxIndex = index;
+
+        // Reset scroll position to top each time a new image opens
+        galleryLightbox.scrollTop = 0;
+
         lightboxImage.src = item.dataset.image;
         lightboxImage.alt = item.querySelector('img').alt;
-        if (lightboxNumber)     lightboxNumber.textContent = `${item.dataset.number} / ${String(galleryItems.length).padStart(2,'0')}`;
-        if (lightboxTitle)      lightboxTitle.textContent = item.dataset.title;
+        if (lightboxNumber)      lightboxNumber.textContent     = `${item.dataset.number} / ${String(galleryItems.length).padStart(2, '0')}`;
+        if (lightboxTitle)       lightboxTitle.textContent      = item.dataset.title || '';
         if (lightboxDescription) lightboxDescription.textContent = item.dataset.description || '';
+
         galleryLightbox.hidden = false;
         document.body.style.overflow = 'hidden';
         lightboxClose?.focus();
@@ -386,36 +399,45 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!galleryLightbox) return;
         galleryLightbox.hidden = true;
         document.body.style.overflow = '';
+        // Return focus to the triggering item
+        galleryItems[lightboxIndex]?.focus();
     }
+
+    // FIX #2: safety net — restore scroll if navigating away while lightbox is open
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible' && galleryLightbox?.hidden !== false) {
+            document.body.style.overflow = '';
+        }
+    });
 
     galleryItems.forEach((item, i) => item.addEventListener('click', () => openGalleryItem(i)));
     lightboxClose?.addEventListener('click', closeGalleryLightbox);
     galleryLightbox?.addEventListener('click', e => { if (e.target === galleryLightbox) closeGalleryLightbox(); });
     document.addEventListener('keydown', e => {
         if (galleryLightbox && !galleryLightbox.hidden) {
-            if (e.key === 'Escape')      closeGalleryLightbox();
+            if (e.key === 'Escape')     closeGalleryLightbox();
             if (e.key === 'ArrowRight') openGalleryItem((lightboxIndex + 1) % galleryItems.length);
             if (e.key === 'ArrowLeft')  openGalleryItem((lightboxIndex - 1 + galleryItems.length) % galleryItems.length);
         }
     });
 
     // ─────────────────────────────────────────────
-    // HERO SLIDER — dots, counter, film label, timer
+    // HERO SLIDER
     // ─────────────────────────────────────────────
-    const slides      = document.querySelectorAll('.hero-slide');
-    const dots        = document.querySelectorAll('.hero-dot');
-    const counter     = document.querySelector('.hero-counter');
-    const heroSlider  = document.querySelector('.hero-backdrop');
-    const filmLabel   = document.querySelector('.hero-film-label');
-    const heroVideo   = slides[0]?.querySelector('video') || null;
-    let currentSlide  = 0;
+    const slides     = document.querySelectorAll('.hero-slide');
+    const dots       = document.querySelectorAll('.hero-dot');
+    const counter    = document.querySelector('.hero-counter');
+    const heroSlider = document.querySelector('.hero-backdrop');
+    const filmLabel  = document.querySelector('.hero-film-label');
+    const heroVideo  = slides[0]?.querySelector('video') || null;
+    let currentSlide = 0;
     let sliderTimer;
 
     function goToSlide(index) {
         if (!slides.length) return;
-        // Pause previous video
         slides[currentSlide].querySelector('video')?.pause();
-        slides[currentSlide].querySelector('video') && (slides[currentSlide].querySelector('video').currentTime = 0);
+        const prevVid = slides[currentSlide].querySelector('video');
+        if (prevVid) prevVid.currentTime = 0;
 
         slides[currentSlide].classList.remove('active');
         dots[currentSlide]?.classList.remove('active');
@@ -424,18 +446,14 @@ document.addEventListener('DOMContentLoaded', () => {
         slides[currentSlide].classList.add('active');
         dots[currentSlide]?.classList.add('active');
 
-        // Update film label
         if (filmLabel) {
             const labelStrong = filmLabel.querySelector('strong');
             const labelSmall  = filmLabel.querySelector('small');
             if (labelStrong) labelStrong.textContent = slides[currentSlide].dataset.title  || '';
             if (labelSmall)  labelSmall.textContent  = slides[currentSlide].dataset.credit || '';
         }
-
-        // Update counter
         if (counter) counter.innerHTML = `0${currentSlide + 1} <i>/ 0${slides.length}</i>`;
 
-        // Play new video if present
         const newVideo = slides[currentSlide].querySelector('video');
         if (newVideo) { newVideo.currentTime = 0; newVideo.play().catch(() => {}); }
     }
@@ -461,14 +479,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     startSlider();
-
-    // ─────────────────────────────────────────────
-    // FILM ROWS — horizontal slide-in on scroll
-    // (handled by .film-list in allRevealEls above,
-    //  but we also need each .film-row to be styled —
-    //  this is done via CSS; this section is a no-op
-    //  placeholder kept for clarity)
-    // ─────────────────────────────────────────────
 
     // ─────────────────────────────────────────────
     // GALLERY HOME GRID — tilt on hover

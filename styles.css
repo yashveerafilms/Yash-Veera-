@@ -137,8 +137,12 @@ footer { background: #15120f; padding: 80px 0 25px; }
 .footer-links a { color: #c8c0b6; font-size: 13px; }
 .footer-links a:hover { color: var(--gold); }
 .footer-bottom { border-top: 1px solid var(--line); color: #716961; display: flex; font-size: 10px; justify-content: space-between; letter-spacing: 1px; margin-top: 70px; padding-top: 20px; text-transform: uppercase; }
+/* FIX #4/#5: removed min-height from the generic section rule — it caused huge
+   blank space on pages with multiple sections (gallery, about) and was overriding
+   body-specific overrides with lower specificity. Each page's own section rules
+   (below) set appropriate min-height where actually needed. */
 body:not(.home-page) { padding-top: 110px; min-height: 100vh; }
-body:not(.home-page) section { background: var(--paper); color: var(--ink); min-height: calc(100vh - 110px); padding: 100px 0; }
+body:not(.home-page) section { background: var(--paper); color: var(--ink); padding: 100px 0; }
 body:not(.home-page) section h2 { color: var(--ink); font-size: clamp(44px, 7vw, 86px); margin-bottom: 45px; }
 body:not(.home-page) .about-content { color: #625b54; font-family: 'Playfair Display', serif; font-size: 25px; line-height: 1.55; max-width: 780px; }
 body:not(.home-page) footer { margin-top: 0; }
@@ -182,9 +186,12 @@ body:not(.home-page) footer { margin-top: 0; }
 .gallery-caption strong { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; }
 .gallery-caption i { color: #c8c0b6; font-size: 9px; font-style: normal; letter-spacing: 1.5px; opacity: 0; text-transform: uppercase; transform: translateY(8px); transition: opacity .3s, transform .3s; }
 .gallery-item:hover .gallery-caption i, .gallery-item:focus-visible .gallery-caption i { opacity: 1; transform: translateY(0); }
-.gallery-lightbox { align-items: center; background: rgba(11,9,8,.96); display: flex; inset: 0; justify-content: center; padding: 45px; position: fixed; z-index: 50; }
+/* FIX #3: lightbox scrollable on desktop when image + description is taller
+   than the viewport. Switch from align-items:center to flex-start + overflow-y:auto
+   so the figure can scroll rather than being clipped. */
+.gallery-lightbox { align-items: flex-start; background: rgba(11,9,8,.96); display: flex; inset: 0; justify-content: center; overflow-y: auto; padding: 60px 45px 45px; position: fixed; z-index: 50; }
 .gallery-lightbox[hidden] { display: none; }
-.gallery-lightbox figure { margin: 0; max-height: 100%; max-width: 1100px; position: relative; }
+.gallery-lightbox figure { margin: 0 auto; max-width: 1100px; position: relative; width: 100%; }
 .gallery-lightbox img { display: block; max-height: 78vh; max-width: 100%; object-fit: contain; }
 .gallery-lightbox figcaption { color: var(--paper); display: grid; gap: 10px 18px; grid-template-columns: auto 1fr; padding-top: 15px; }
 .gallery-lightbox figcaption span { color: var(--gold); font-size: 11px; letter-spacing: 2px; }
@@ -196,13 +203,17 @@ body.gallery-body { background: var(--ink); }
 body.gallery-body section { min-height: 0; padding: 0; }
 body.gallery-body .gallery-intro { background: var(--ink); min-height: 410px; padding: 95px 0 75px; }
 body.gallery-body .gallery-showcase { padding: 85px 0 125px; }
+/* About body — override generic section rule: no min-height, custom bg per section */
 body.about-body { background: var(--ink); }
-body.about-body section { min-height: 0; padding: 0; }
-body.about-body .about-section { background: var(--paper); color: var(--ink); padding: 110px 0 125px; }
+body.about-body section { min-height: 0 !important; padding: 0 !important; background: inherit; color: inherit; }
+body.about-body .about-section { background: var(--paper); color: var(--ink); padding: 110px 0 125px !important; }
 .about-layout { align-items: center; display: grid; gap: 9%; grid-template-columns: minmax(280px, .9fr) 1.1fr; }
-.about-visual { align-self: start; aspect-ratio: 2 / 3; background: #241d18; overflow: hidden; position: relative; top: 130px; }
+/* FIX #9: about-visual sticky — use a clean sticky with correct top offset
+   instead of top:130px which caused sticky to start too late and caused
+   layout jumps. Only sticky on desktop (min-width:801px guard already below). */
+.about-visual { align-self: start; aspect-ratio: 2 / 3; background: #241d18; overflow: hidden; position: relative; }
 @media (min-width: 801px) {
-    .about-visual { position: sticky; }
+    .about-visual { position: sticky; top: 130px; }
 }
 .about-visual::after { background: linear-gradient(0deg, rgba(12,9,7,.8), transparent 48%); content: ''; inset: 0; pointer-events: none; position: absolute; }
 .about-visual img { display: block; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.7,.2,1); width: 100%; }
@@ -232,7 +243,8 @@ body.about-body .text-link:hover { color: var(--red); }
 .association strong { color: var(--ink); font-family: 'Playfair Display', serif; font-size: 22px; }
 .association span { color: #716a62; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
 .association em { text-transform: none; }
-.about-signature { background: var(--red); color: var(--paper); padding: 85px 0; }
+.about-signature { background: var(--red); color: var(--paper); padding: 85px 0; min-height: 0 !important; }
+body.about-body .about-signature { padding: 85px 0 !important; }
 .about-signature .eyebrow { color: #f0c5b8; }
 .about-signature p:last-child { font-family: 'Playfair Display', serif; font-size: clamp(42px, 7vw, 82px); line-height: .95; margin-top: 22px; }
 .about-signature em { color: #f5d2c8; }
@@ -261,9 +273,17 @@ body.about-body .text-link:hover { color: var(--red); }
     .association:nth-child(even) { border-left: 0; padding-left: 0; }
 }
 .cursor-glow, .cursor-dot { display: none; }
-@media (max-width: 800px) { .container { width: min(100% - 40px, 600px); } .nav-container { width: calc(100% - 40px); } .nav-links { background: rgba(17,14,12,.98); border-top: 1px solid var(--line); display: none; flex-direction: column; gap: 0; left: 0; padding: 12px 20px; position: absolute; top: 77px; width: 100%; } .nav-links.open { display: flex; } .nav-links li { border-bottom: 1px solid var(--line); padding: 14px 0; } .nav-mark { margin-left: auto; } .menu-toggle { display: block; } .home-hero { display: block; height: auto; aspect-ratio: 16 / 9; min-height: 200px; max-height: none; padding-top: 0; margin-top: 77px; } .hero-backdrop { bottom: 0; height: 100%; opacity: 1; top: 0; } .hero-slides { border: 0; height: 100%; opacity: 1; right: 0; top: 0; width: 100%; } .hero-slide video { object-fit: cover; object-position: center center; } .hero-slide img { object-fit: cover; object-position: center center; } .hero-copy { display: none; } .hero-film-label { display: none; } .hero-controls { bottom: 10px; right: 12px; } .hero-scroll { bottom: 10px; left: 12px; right: auto; top: auto; font-size: 8px; } .section-pad { padding: 80px 0; } .section-heading { align-items: flex-start; flex-direction: column; gap: 25px; } .section-heading .text-link { margin-top: 0; } .release-grid { display: block; } .release-feature { height: 430px; } .release-side { border-left: 0; border-top: 1px solid #cfc9c1; margin-top: 35px; min-height: 260px; padding: 25px 0 0; } .side-copy { margin-top: 35px; max-width: 350px; } .film-row { gap: 12px; grid-template-columns: 25px 75px 1fr 20px; min-height: 105px; } .film-row img { height: 72px; width: 75px; } .film-row h3 { font-size: 21px; } .film-row p { font-size: 9px; } .journal-grid { grid-template-columns: 1fr; } .journal-grid article img { height: 220px; } .gallery-intro { min-height: 0; padding: 85px 0 65px; } .gallery-intro-inner, .gallery-heading { align-items: flex-start; flex-direction: column; gap: 35px; } .gallery-intro-note { margin: 0; } .gallery-showcase { padding: 65px 0 80px; } .gallery-grid { display: grid; gap: 12px; grid-auto-rows: 210px; grid-template-columns: 1fr 1fr; } .gallery-item, .gallery-item-feature, .gallery-item-wide, .gallery-item-last { grid-column: span 1; grid-row: span 1; } .gallery-item-feature { grid-column: span 2; grid-row: span 2; } .gallery-caption { padding: 15px; } .gallery-caption strong { font-size: 17px; } .gallery-caption i { display: none; } .gallery-lightbox { padding: 25px 20px; } .gallery-lightbox img { max-height: 72vh; } .gallery-lightbox figcaption { display: block; } .gallery-lightbox figcaption strong { display: block; margin-top: 5px; } .lightbox-close { right: 18px; top: 18px; } .footer-top { display: block; } .footer-links { gap: 50px; margin-top: 45px; } .footer-bottom { gap: 12px; line-height: 1.4; } body:not(.home-page) section { padding: 70px 0; } }
+@media (max-width: 800px) { .container { width: min(100% - 40px, 600px); } .nav-container { width: calc(100% - 40px); } .nav-links { background: rgba(17,14,12,.98); border-top: 1px solid var(--line); display: none; flex-direction: column; gap: 0; left: 0; padding: 12px 20px; position: absolute; top: 77px; width: 100%; } .nav-links.open { display: flex; } .nav-links li { border-bottom: 1px solid var(--line); padding: 14px 0; } .nav-mark { margin-left: auto; } .menu-toggle { display: block; } .home-hero { display: block; height: auto; aspect-ratio: 16 / 9; min-height: 200px; max-height: none; padding-top: 0; margin-top: 77px; } .hero-backdrop { bottom: 0; height: 100%; opacity: 1; top: 0; } .hero-slides { border: 0; height: 100%; opacity: 1; right: 0; top: 0; width: 100%; } .hero-slide video { object-fit: cover; object-position: center center; } .hero-slide img { object-fit: cover; object-position: center center; } .hero-copy { display: none; } .hero-film-label { display: none; } .hero-controls { bottom: 10px; right: 12px; } .hero-scroll { bottom: 10px; left: 12px; right: auto; top: auto; font-size: 8px; } .section-pad { padding: 80px 0; } .section-heading { align-items: flex-start; flex-direction: column; gap: 25px; } .section-heading .text-link { margin-top: 0; } .release-grid { display: block; } .release-feature { height: 430px; } .release-side { border-left: 0; border-top: 1px solid #cfc9c1; margin-top: 35px; min-height: 260px; padding: 25px 0 0; } .side-copy { margin-top: 35px; max-width: 350px; } .film-row { gap: 12px; grid-template-columns: 25px 75px 1fr 20px; min-height: 105px; } .film-row img { height: 72px; width: 75px; } .film-row h3 { font-size: 21px; } .film-row p { font-size: 9px; } .journal-grid { grid-template-columns: 1fr; } .journal-grid article img { height: 220px; } .gallery-intro { min-height: 0; padding: 85px 0 65px; } .gallery-intro-inner, .gallery-heading { align-items: flex-start; flex-direction: column; gap: 35px; } .gallery-intro-note { margin: 0; } .gallery-showcase { padding: 65px 0 80px; } .gallery-grid { display: grid; gap: 12px; grid-auto-rows: 210px; grid-template-columns: 1fr 1fr; } .gallery-item, .gallery-item-feature, .gallery-item-wide, .gallery-item-last { grid-column: span 1; grid-row: span 1; } .gallery-item-feature { grid-column: span 2; grid-row: span 2; } .gallery-caption { padding: 15px; } .gallery-caption strong { font-size: 17px; } .gallery-caption i { display: none; } .gallery-lightbox { padding: 25px 20px; } .gallery-lightbox img { max-height: 72vh; } .gallery-lightbox figcaption { display: block; } .gallery-lightbox figcaption strong { display: block; margin-top: 5px; } .lightbox-close { right: 18px; top: 18px; } .footer-top { display: block; } .footer-links { gap: 50px; margin-top: 45px; } .footer-bottom { gap: 12px; line-height: 1.4; } body:not(.home-page) section { padding: 60px 0; } }
 
-.projects-intro { padding: 28px 0 45px; }
+/* FIX #6: at mid-size desktop (801–1100px) the 12-column grid with span-7
+   feature items was overflowing. Reduce to an 8-column grid at that breakpoint. */
+@media (min-width: 801px) and (max-width: 1100px) {
+    .gallery-grid { grid-template-columns: repeat(8, 1fr); grid-auto-rows: 80px; }
+    .gallery-item { grid-column: span 4; grid-row: span 4; }
+    .gallery-item-feature { grid-column: span 5; grid-row: span 5; }
+    .gallery-item-wide { grid-column: span 4; grid-row: span 4; }
+    .gallery-item-last { grid-column: span 4; }
+}
 .projects-intro h2 { color: var(--paper); font-size: clamp(52px, 8vw, 100px); line-height: .95; margin: 20px 0; }
 .projects-intro > p:last-child { color: var(--muted); font-size: 16px; }
 .project-cards { display: grid; gap: 25px; grid-template-columns: repeat(3, 1fr); padding-bottom: 110px; }
@@ -301,12 +321,14 @@ body.about-body .text-link:hover { color: var(--red); }
     .gallery-caption strong { font-size: 15px; line-height: 1.15; }
     .gallery-caption b { font-size: 9px; }
 }
-body.gallery-body:not(.home-page) section { min-height: 0; padding: 0; }
-body.gallery-body .gallery-intro { min-height: 410px; padding: 95px 0 75px; }
-body.gallery-body .gallery-showcase { padding: 85px 0 125px; }
+/* FIX #5: gallery-body section overrides — ensure no min-height bleeds in
+   from body:not(.home-page) section, and restore correct padding per section */
+body.gallery-body section { min-height: 0 !important; padding: 0 !important; background: inherit; color: inherit; }
+body.gallery-body .gallery-intro { background: var(--ink); color: var(--paper); min-height: 410px !important; padding: 95px 0 75px !important; }
+body.gallery-body .gallery-showcase { background: #e8e3db; color: var(--ink); padding: 85px 0 125px !important; }
 @media (max-width: 800px) {
-    body.gallery-body .gallery-intro { min-height: 0; padding: 60px 0 45px; }
-    body.gallery-body .gallery-showcase { padding: 45px 0 80px; }
+    body.gallery-body .gallery-intro { min-height: 0 !important; padding: 60px 0 45px !important; }
+    body.gallery-body .gallery-showcase { padding: 45px 0 80px !important; }
     body.gallery-body .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
     body.gallery-body .gallery-item { grid-column: span 1; max-width: 100%; min-width: 0; }
     body.gallery-body .gallery-item-feature { aspect-ratio: 4 / 3; grid-column: 1 / -1; }
@@ -318,7 +340,8 @@ body.gallery-body .gallery-showcase { padding: 85px 0 125px; }
 }
 
 @media (max-width: 800px) {
-    .gallery-lightbox { align-items: flex-start; overflow-y: auto; padding: 70px 24px 35px; }
+    /* FIX #3 mobile: lightbox already scrollable from base rule; adjust padding */
+    .gallery-lightbox { padding: 60px 20px 35px; }
     .gallery-lightbox figure { max-width: 100%; }
     .gallery-lightbox img { max-height: 58vh; width: 100%; }
     .gallery-lightbox figcaption { gap: 9px 12px; }
@@ -425,12 +448,14 @@ body.gallery-body .gallery-showcase { padding: 85px 0 125px; }
 body.projects-body,
 body.cast-body,
 body.contact-body { background: var(--ink); }
+/* FIX #10: give inner sections real padding; remove min-height that caused
+   blank space when content is shorter than the viewport */
 body.projects-body section,
 body.cast-body section,
 body.contact-body section {
     background: var(--ink);
     color: var(--paper);
-    min-height: calc(100vh - 110px);
+    padding: 80px 0 110px;
 }
 body.cast-body .about-content { color: #c8c0b6; max-width: none; }
 body.cast-body .associations-heading,
@@ -805,18 +830,22 @@ body.contact-body .contact-info { border-color: rgba(240,237,231,.28); }
 }
 
 /* ── Page transition overlay ── */
+/* FIX #7: overlay starts hidden below viewport; only animates on .exit */
 .page-transition {
     background: var(--ink);
     inset: 0;
     pointer-events: none;
     position: fixed;
     transform: translateY(100%);
+    /* No transition by default — snaps out instantly when .exit is removed */
+    transition: none;
     z-index: 200;
-    transition: transform .55s cubic-bezier(.77,0,.18,1);
 }
 .page-transition.exit {
     pointer-events: all;
     transform: translateY(0);
+    /* Slide-in animation only plays when navigating away */
+    transition: transform .55s cubic-bezier(.77,0,.18,1);
 }
 
 /* ── Film row entrance ── */
@@ -909,8 +938,8 @@ body.contact-body .contact-info { border-color: rgba(240,237,231,.28); }
 body.about-body .about-partner-section {
     background: #1a1512;
     color: var(--paper);
-    padding: 110px 0 125px;
-    min-height: 0;
+    padding: 110px 0 125px !important;
+    min-height: 0 !important;
 }
 body.about-body .about-partner-section .about-copy .eyebrow {
     color: var(--gold);
