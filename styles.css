@@ -10,6 +10,8 @@
     --glass-border: rgba(240,237,231,.14);
     --accent: #d7a84d;
 }
+/* Screen-reader only utility */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { background: var(--ink); color: var(--paper); font-family: 'DM Sans', sans-serif; line-height: 1.6; overflow-x: hidden; }
@@ -150,7 +152,7 @@ body:not(.home-page) footer { margin-top: 0; }
 .form-group input, .form-group textarea { background: transparent; border: 0; border-bottom: 1px solid #bbb3aa; color: var(--ink); font: inherit; padding: 15px 0; width: 100%; }
 .form-group textarea { resize: vertical; min-height: 120px; }
 .form-group input:focus, .form-group textarea:focus { border-color: var(--red); outline: none; }
-.btn-primary { background: var(--red); border: 0; color: white; cursor: pointer; font: inherit; padding: 17px 28px; text-transform: uppercase; }
+.btn-primary { background: var(--red); border: 1px solid transparent; color: white; cursor: pointer; font: inherit; padding: 17px 28px; text-transform: uppercase; }
 .gallery-page { background: var(--ink); color: var(--paper); }
 .gallery-intro { background: var(--ink); min-height: 430px; padding: 120px 0 80px; }
 .gallery-intro-inner { align-items: flex-end; display: flex; justify-content: space-between; }
@@ -198,7 +200,10 @@ body.about-body { background: var(--ink); }
 body.about-body section { min-height: 0; padding: 0; }
 body.about-body .about-section { background: var(--paper); color: var(--ink); padding: 110px 0 125px; }
 .about-layout { align-items: center; display: grid; gap: 9%; grid-template-columns: minmax(280px, .9fr) 1.1fr; }
-.about-visual { align-self: start; aspect-ratio: 2 / 3; background: #241d18; overflow: hidden; position: sticky; top: 130px; }
+.about-visual { align-self: start; aspect-ratio: 2 / 3; background: #241d18; overflow: hidden; position: relative; top: 130px; }
+@media (min-width: 801px) {
+    .about-visual { position: sticky; }
+}
 .about-visual::after { background: linear-gradient(0deg, rgba(12,9,7,.8), transparent 48%); content: ''; inset: 0; pointer-events: none; position: absolute; }
 .about-visual img { display: block; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.7,.2,1); width: 100%; }
 .about-visual:hover img { transform: scale(1.04); }
@@ -896,4 +901,54 @@ body.contact-body .contact-info { border-color: rgba(240,237,231,.28); }
     .studio-stat-line { gap: 12px; }
     .counter-number { font-size: clamp(52px, 14vw, 80px); }
     .film-strip-border { border-top-width: 6px; border-bottom-width: 6px; }
+}
+
+/* ============================================================
+   ABOUT — PARTNER / SPOUSE SECTION
+   ============================================================ */
+body.about-body .about-partner-section {
+    background: #1a1512;
+    color: var(--paper);
+    padding: 110px 0 125px;
+    min-height: 0;
+}
+body.about-body .about-partner-section .about-copy .eyebrow {
+    color: var(--gold);
+}
+body.about-body .about-partner-section .about-copy h1 {
+    color: var(--paper);
+}
+body.about-body .about-partner-section .about-copy h1 em {
+    color: var(--gold);
+}
+body.about-body .about-partner-section .about-lead {
+    color: #c8c0b6;
+}
+body.about-body .about-partner-section .about-content {
+    color: #a89f96;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.85;
+    max-width: 640px;
+}
+body.about-body .about-partner-section .about-content p + p {
+    margin-top: 16px;
+}
+body.about-body .about-partner-section .about-content strong {
+    color: var(--paper);
+}
+body.about-body .about-partner-section .about-visual {
+    background: #241d18;
+}
+body.about-body .about-partner-section .about-visual-label span {
+    color: var(--gold);
+}
+body.about-body .about-partner-section .about-visual-label strong {
+    color: var(--paper);
+}
+
+@media (max-width: 800px) {
+    body.about-body .about-partner-section {
+        padding: 70px 0 80px;
+    }
 }

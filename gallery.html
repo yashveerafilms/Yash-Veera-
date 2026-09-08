@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; script-src 'self' 'unsafe-inline';">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://api.web3forms.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; script-src 'self' 'unsafe-inline';">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Yash Veera Films | Gallery</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,10 +51,25 @@
     </nav>
 
     <main class="gallery-page">
+        <section class="gallery-intro">
+            <div class="container gallery-intro-inner">
+                <div>
+                    <p class="eyebrow">Production stills · 2026</p>
+                    <h1>Gallery</h1>
+                </div>
+                <div class="gallery-intro-note">
+                    <span class="gallery-index">12 <i>Stills</i></span>
+                    <p>Every frame carries a little of the journey. Behind the lens, between takes, and beyond the frame.</p>
+                </div>
+            </div>
+        </section>
         <section id="gallery" class="gallery-showcase">
             <div class="container">
                 <div class="gallery-heading reveal">
-                    <p class="eyebrow">Production stills · 2026</p>
+                    <div>
+                        <p class="eyebrow">Production stills · 2026</p>
+                        <h2>Production Stills</h2>
+                    </div>
                     <p>Every frame carries a little of the journey.</p>
                 </div>
                 <div class="gallery-grid reveal">
@@ -62,41 +77,49 @@
                         <img loading="lazy" src="gallery/WhatsApp Image 2026-09-04 at 11.55.42 AM (1) (1).jpg" alt="Pyarelal Gundecha meeting Shri Amit Shah">
                         <span class="gallery-caption"><b>01</b><strong>A proud and memorable meeting</strong><i>Open frame</i></span>
                     </button>
-                    <button class="gallery-item" type="button" data-image="gallery/production-still-2.webp" data-title="A meeting driven by vision" data-number="02" data-description="Producer Pyarelal Gundecha had the privilege of meeting Sanjay Kapoor to discuss his upcoming cinematic venture. A meeting driven by vision, ambition, creativity, and the passion to bring powerful stories to the screen. Pyarelal Gundecha continues to move forward with the confidence and determination of a producer who believes in creating cinema that makes an impact. Big dreams need bold vision. Great cinema needs powerful minds. And every remarkable journey begins with one meaningful meeting.">
+                    <button class="gallery-item" type="button" data-image="gallery/production-still-1.webp" data-title="On set — production still" data-number="02">
+                        <img loading="lazy" src="gallery/production-still-1.webp" alt="Yash Veera Films on-set production still">
+                        <span class="gallery-caption"><b>02</b><strong>On set — production still</strong><i>Open frame</i></span>
+                    </button>
+                    <button class="gallery-item" type="button" data-image="gallery/production-still-2.webp" data-title="A meeting driven by vision" data-number="03" data-description="Producer Pyarelal Gundecha had the privilege of meeting Sanjay Kapoor to discuss his upcoming cinematic venture. A meeting driven by vision, ambition, creativity, and the passion to bring powerful stories to the screen. Pyarelal Gundecha continues to move forward with the confidence and determination of a producer who believes in creating cinema that makes an impact. Big dreams need bold vision. Great cinema needs powerful minds. And every remarkable journey begins with one meaningful meeting.">
                         <img loading="lazy" src="gallery/production-still-2.webp" alt="Producer Pyarelal Gundecha meeting Sanjay Kapoor">
-                        <span class="gallery-caption"><b>02</b><strong>A meeting driven by vision</strong><i>Open frame</i></span>
+                        <span class="gallery-caption"><b>03</b><strong>A meeting driven by vision</strong><i>Open frame</i></span>
                     </button>
-                    <button class="gallery-item" type="button" data-image="gallery/production-still-3.webp" data-title="Between takes" data-number="03">
+                    <button class="gallery-item" type="button" data-image="gallery/production-still-3.webp" data-title="Between takes" data-number="04">
                         <img loading="lazy" src="gallery/production-still-3.webp" alt="Behind the scenes moment">
-                        <span class="gallery-caption"><b>03</b><strong>Between takes</strong><i>Open frame</i></span>
+                        <span class="gallery-caption"><b>04</b><strong>Between takes</strong><i>Open frame</i></span>
                     </button>
-                    <button class="gallery-item gallery-item-wide" type="button" data-image="gallery/production-still-4.webp" data-title="The work behind the wonder" data-number="04">
+                    <button class="gallery-item gallery-item-wide" type="button" data-image="gallery/production-still-4.webp" data-title="The work behind the wonder" data-number="05">
                         <img loading="lazy" src="gallery/production-still-4.webp" alt="Yash Veera Films production detail">
-                        <span class="gallery-caption"><b>04</b><strong>The work behind the wonder</strong><i>Open frame</i></span>
+                        <span class="gallery-caption"><b>05</b><strong>The work behind the wonder</strong><i>Open frame</i></span>
                     </button>
-                    <button class="gallery-item" type="button" data-image="gallery/production-still-5.webp" data-title="A world in the making" data-number="05">
+                    <button class="gallery-item" type="button" data-image="gallery/production-still-5.webp" data-title="A world in the making" data-number="06">
                         <img loading="lazy" src="gallery/production-still-5.webp" alt="Film production still">
-                        <span class="gallery-caption"><b>05</b><strong>A world in the making</strong><i>Open frame</i></span>
+                        <span class="gallery-caption"><b>06</b><strong>A world in the making</strong><i>Open frame</i></span>
                     </button>
-                    <button class="gallery-item gallery-item-last" type="button" data-image="gallery/production-still-6.webp" data-title="Hold the feeling" data-number="06">
+                    <button class="gallery-item gallery-item-last" type="button" data-image="gallery/production-still-6.webp" data-title="Hold the feeling" data-number="07">
                         <img loading="lazy" src="gallery/production-still-6.webp" alt="Final production still">
-                        <span class="gallery-caption"><b>06</b><strong>Hold the feeling</strong><i>Open frame</i></span>
+                        <span class="gallery-caption"><b>07</b><strong>Hold the feeling</strong><i>Open frame</i></span>
                     </button>
-                    <button class="gallery-item" type="button" data-image="gallery/WhatsApp Image 2026-09-03 at 7.47.35 PM.jpeg" data-title="A meeting with Prashant Narayanan" data-number="07" data-description="Producer Pyarelal Gundecha had the honour of meeting acclaimed actor Prashant Narayanan — a powerful performer known for his intense and memorable roles in Indian cinema. A meeting that brings together creative vision and bold talent, paving the way for exciting new stories on the big screen.">
+                    <button class="gallery-item" type="button" data-image="gallery/WhatsApp Image 2026-09-03 at 7.47.35 PM.jpeg" data-title="A meeting with Prashant Narayanan" data-number="08" data-description="Producer Pyarelal Gundecha had the honour of meeting acclaimed actor Prashant Narayanan — a powerful performer known for his intense and memorable roles in Indian cinema. A meeting that brings together creative vision and bold talent, paving the way for exciting new stories on the big screen.">
                         <img loading="lazy" src="gallery/WhatsApp Image 2026-09-03 at 7.47.35 PM.jpeg" alt="Pyarelal Gundecha meeting actor Prashant Narayanan" style="object-position: top;">
-                        <span class="gallery-caption"><b>07</b><strong>A meeting with Prashant Narayanan</strong><i>Open frame</i></span>
+                        <span class="gallery-caption"><b>08</b><strong>A meeting with Prashant Narayanan</strong><i>Open frame</i></span>
                     </button>
-                    <button class="gallery-item" type="button" data-image="gallery/WhatsApp Image 2026-09-04 at 11.54.15 AM.jpeg" data-title="A creative meeting with Esther Anil" data-number="08" data-description="Pyarelal Gundecha, the driving force behind Yash Veera Films, recently met acclaimed actress Esther Anil as part of the casting and creative journey for the much-anticipated Pan-India film UNEXPECT. The meeting represents more than a collaboration — it reflects Pyarelal Gundecha's vision to build a powerful Pan-India cinematic experience by bringing together established talent, fresh creative energy, and a strong filmmaking team. With his ambition and commitment at the forefront, UNEXPECT is being developed as a film designed to reach audiences across India and create a distinctive identity on the national cinematic stage. The film will be directed by Ashok SD, whose creative vision will bring the story to life under the production leadership of Pyarelal Gundecha.">
+                    <button class="gallery-item" type="button" data-image="gallery/WhatsApp Image 2026-09-04 at 11.54.15 AM.jpeg" data-title="A creative meeting with Esther Anil" data-number="09" data-description="Pyarelal Gundecha, the driving force behind Yash Veera Films, recently met acclaimed actress Esther Anil as part of the casting and creative journey for the much-anticipated Pan-India film UNEXPECT. The meeting represents more than a collaboration — it reflects Pyarelal Gundecha's vision to build a powerful Pan-India cinematic experience by bringing together established talent, fresh creative energy, and a strong filmmaking team. With his ambition and commitment at the forefront, UNEXPECT is being developed as a film designed to reach audiences across India and create a distinctive identity on the national cinematic stage. The film will be directed by Ashok SD, whose creative vision will bring the story to life under the production leadership of Pyarelal Gundecha.">
                         <img loading="lazy" src="gallery/WhatsApp Image 2026-09-04 at 11.54.15 AM.jpeg" alt="Pyarelal Gundecha meeting actress Esther Anil for UNEXPECT">
-                        <span class="gallery-caption"><b>08</b><strong>A creative meeting with Esther Anil</strong><i>Open frame</i></span>
+                        <span class="gallery-caption"><b>09</b><strong>A creative meeting with Esther Anil</strong><i>Open frame</i></span>
                     </button>
-                    <button class="gallery-item" type="button" data-image="gallery/WhatsApp Image 2026-09-05 at 8.21.43 PM.jpeg" data-title="Honouring Shri C. P. Radhakrishnan" data-number="09" data-description="Pyarelal Gundecha had the privilege of meeting Shri C. P. Radhakrishnan and honouring him on the occasion. The meeting was a memorable and dignified moment, marked by warmth, respect, and admiration. It was a proud opportunity to meet and felicitate one of India's distinguished public leaders, whose remarkable journey in public service continues to inspire many.">
+                    <button class="gallery-item" type="button" data-image="gallery/WhatsApp Image 2026-09-05 at 8.21.43 PM.jpeg" data-title="Honouring Shri C. P. Radhakrishnan" data-number="10" data-description="Pyarelal Gundecha had the privilege of meeting Shri C. P. Radhakrishnan and honouring him on the occasion. The meeting was a memorable and dignified moment, marked by warmth, respect, and admiration. It was a proud opportunity to meet and felicitate one of India's distinguished public leaders, whose remarkable journey in public service continues to inspire many.">
                         <img loading="lazy" src="gallery/WhatsApp Image 2026-09-05 at 8.21.43 PM.jpeg" alt="Pyarelal Gundecha honouring Shri C. P. Radhakrishnan">
-                        <span class="gallery-caption"><b>09</b><strong>Honouring Shri C. P. Radhakrishnan</strong><i>Open frame</i></span>
+                        <span class="gallery-caption"><b>10</b><strong>Honouring Shri C. P. Radhakrishnan</strong><i>Open frame</i></span>
                     </button>
-                    <button class="gallery-item gallery-item-feature" type="button" data-image="gallery/HRqSymubgAEjDsC.jpg" data-title="A visionary producer — Pyarelal Gundecha" data-number="10" data-description="Pyarelal Gundecha — a visionary producer and a distinguished name in Indian cinema. His passion, ambition, and creative vision continue to inspire the world of filmmaking. With Unexpected, he brings together exceptional talent and a powerful cinematic vision. A proud association with legendary lyricist Vairamuthu, director S.D. Ashok, and music director Vijay Shanker. A producer with the vision to dream boldly, create fearlessly, and make cinema truly unforgettable.">
+                    <button class="gallery-item gallery-item-feature" type="button" data-image="gallery/HRqSymubgAEjDsC.jpg" data-title="A visionary producer — Pyarelal Gundecha" data-number="11" data-description="Pyarelal Gundecha — a visionary producer and a distinguished name in Indian cinema. His passion, ambition, and creative vision continue to inspire the world of filmmaking. With Unexpected, he brings together exceptional talent and a powerful cinematic vision. A proud association with legendary lyricist Vairamuthu, director S.D. Ashok, and music director Vijay Shanker. A producer with the vision to dream boldly, create fearlessly, and make cinema truly unforgettable.">
                         <img loading="lazy" src="gallery/HRqSymubgAEjDsC.jpg" alt="Pyarelal Gundecha — visionary producer of Yash Veera Films">
-                        <span class="gallery-caption"><b>10</b><strong>A visionary producer — Pyarelal Gundecha</strong><i>Open frame</i></span>
+                        <span class="gallery-caption"><b>11</b><strong>A visionary producer — Pyarelal Gundecha</strong><i>Open frame</i></span>
+                    </button>
+                    <button class="gallery-item" type="button" data-image="gallery/WhatsApp Image 2026-09-08 at 1.16.27 PM.jpeg" data-title="A memorable meeting" data-number="12" data-description="Another proud and memorable meeting captured on set — a moment that reflects the growing creative connections being built by Pyarelal Gundecha and Yash Veera Films as they bring their cinematic vision to life.">
+                        <img loading="lazy" src="gallery/WhatsApp Image 2026-09-08 at 1.16.27 PM.jpeg" alt="Pyarelal Gundecha — a memorable meeting" style="object-position: top;">
+                        <span class="gallery-caption"><b>12</b><strong>A memorable meeting</strong><i>Open frame</i></span>
                     </button>
                 </div>
             </div>
