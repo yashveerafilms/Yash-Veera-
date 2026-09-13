@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# Block access to git internals
+Disallow: /.git/
+
 Sitemap: https://yashveerafilms.com/sitemap.xml
