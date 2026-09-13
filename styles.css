@@ -1155,7 +1155,9 @@ body.about-body .about-partner-section .about-visual-label strong {
     min-height: unset;
 }
 .news-featured .news-card-img img {
-    object-position: center 20%; /* adjust crop to show faces better */
+    object-fit: contain; /* display full image without cropping */
+    object-position: center; 
+    height: 100%;
 }
 .news-featured .news-card-content {
     padding: 50px 48px;
