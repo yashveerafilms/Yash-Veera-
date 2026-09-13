@@ -1083,6 +1083,15 @@ body.about-body .about-partner-section .about-visual-label strong {
     margin-bottom: 25px;
     flex-grow: 1;
 }
+.news-quote {
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-style: italic;
+    margin: 12px 0 0;
+    padding-left: 14px;
+    border-left: 2px solid var(--gold);
+}
 .news-card-footer {
     display: flex;
     justify-content: space-between;
