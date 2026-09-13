@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://api.web3forms.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; script-src 'self' 'unsafe-inline';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://api.web3forms.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; script-src 'self' 'unsafe-inline';">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Yash Veera Films | Stories That Stay</title>
     <meta name="description" content="Yash Veera Films creates bold, human stories for the big screen.">
@@ -12,12 +12,12 @@
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="Yash Veera Films | Stories That Stay">
     <meta property="og:description" content="Yash Veera Films creates bold, human stories for the big screen.">
-    <meta property="og:image" content="https://yashveerafilms.com/logo.svg">
+    <meta property="og:image" content="https://yashveerafilms.com/assets/images/brand/logo.svg">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Yash Veera Films | Stories That Stay">
     <meta name="twitter:description" content="Yash Veera Films creates bold, human stories for the big screen.">
-    <meta name="twitter:image" content="https://yashveerafilms.com/logo.svg">
+    <meta name="twitter:image" content="https://yashveerafilms.com/assets/images/brand/logo.svg">
     <meta property="og:url" content="https://yashveerafilms.com/">
     <link rel="canonical" href="https://yashveerafilms.com/">
     <script type="application/ld+json">
@@ -25,7 +25,7 @@
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Yash Veera Films",
-      "image": "https://yashveerafilms.com/logo.svg",
+      "image": "https://yashveerafilms.com/assets/images/brand/logo.svg",
       "url": "https://yashveerafilms.com",
       "telephone": "+919940290000",
       "email": "yashveerafilms@gmail.com",
@@ -34,12 +34,12 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="preload" href="Yash Veera logo Video.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="assets/video/logo-video.mp4" as="video" type="video/mp4">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="preload" href="1.webp" as="image">
-    <link rel="preload" href="slider1.webp" as="image">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/webp" href="favicon.webp">
+    <link rel="preload" href="assets/images/hero/hero-1.webp" as="image">
+    <link rel="preload" href="assets/images/hero/slider1.webp" as="image">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="icon" type="image/webp" href="assets/images/brand/favicon.webp">
 </head>
 <body class="home-page">
     <div class="cinema-intro" id="cinema-intro" aria-hidden="true">
@@ -51,19 +51,56 @@
     <div class="film-grain" aria-hidden="true"></div>
     <div class="scroll-progress" aria-hidden="true"></div>
     <div class="cursor-glow"></div><div class="cursor-dot"></div>
-    <nav id="navbar" class="navbar"><div class="nav-container"><a href="index.html" class="logo" aria-label="Yash Veera Films home"><video class="brand-logo" autoplay muted loop playsinline poster="logo.svg" aria-label="Yash Veera Films logo"><source src="Yash Veera logo Video.mp4" type="video/mp4"></video><strong>YASH VEERA<br><small>FILMS</small></strong></a><ul class="nav-links"><li><a class="active" href="index.html">Home</a></li><li><a href="projects.html">Projects</a></li><li><a href="cast.html">Cast & Crew</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="news.html">News</a></li><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul><a class="nav-mark" href="contact.html">Let's talk</a><button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button></div></nav>
+
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo" aria-label="Yash Veera Films home">
+                <video class="brand-logo" autoplay muted loop playsinline poster="assets/images/brand/logo.svg" aria-label="Yash Veera Films logo">
+                    <source src="assets/video/logo-video.mp4" type="video/mp4">
+                </video>
+                <strong>YASH VEERA<br><small>FILMS</small></strong>
+            </a>
+            <ul class="nav-links">
+                <li><a class="active" href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="cast.html">Cast & Crew</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a class="nav-mark" href="contact.html">Let's talk</a>
+            <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+        </div>
+    </nav>
+
     <main>
         <section class="hero home-hero" id="home">
             <div class="hero-backdrop">
                 <div class="hero-slides">
-                    <div class="hero-slide active" data-title="Yash Veera Films" data-credit="Moving brand mark"><video autoplay muted playsinline poster="logo.svg" aria-label="Yash Veera Films animated logo"><source src="Yash Veera logo Video.mp4" type="video/mp4"></video></div>
-                    <div class="hero-slide" data-title="Ester Anil Land Scape" data-credit="Starring Ester Anil"><img src="ester anil land scape.jpg" alt="Ester Anil Land Scape"></div>
-                    <div class="hero-slide" data-title="Unexpected" data-credit="Now in production"><img src="1.webp" alt="Yash Veera Films production image 1"></div>
-                    <div class="hero-slide" data-title="On set" data-credit="A world in the making"><img src="2.webp" alt="Yash Veera Films production image 2"></div>
-                    <div class="hero-slide" data-title="" data-credit="Stories that stay"><img src="3.webp" alt="Yash Veera Films production image 3"></div>
-                    <div class="hero-slide" data-title="" data-credit="A world in the making"><img src="silder4.webp" alt="Yash Veera Films production image 4"></div>
+                    <div class="hero-slide active" data-title="Yash Veera Films" data-credit="Moving brand mark">
+                        <video autoplay muted playsinline poster="assets/images/brand/logo.svg" aria-label="Yash Veera Films animated logo">
+                            <source src="assets/video/logo-video.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="hero-slide" data-title="Ester Anil Land Scape" data-credit="Starring Ester Anil">
+                        <img src="assets/images/hero/ester-anil-landscape.jpg" alt="Ester Anil Land Scape">
+                    </div>
+                    <div class="hero-slide" data-title="Unexpected" data-credit="Now in production">
+                        <img src="assets/images/hero/hero-1.webp" alt="Yash Veera Films production image 1">
+                    </div>
+                    <div class="hero-slide" data-title="On set" data-credit="A world in the making">
+                        <img src="assets/images/hero/hero-2.webp" alt="Yash Veera Films production image 2">
+                    </div>
+                    <div class="hero-slide" data-title="" data-credit="Stories that stay">
+                        <img src="assets/images/hero/hero-3.webp" alt="Yash Veera Films production image 3">
+                    </div>
+                    <div class="hero-slide" data-title="" data-credit="A world in the making">
+                        <img src="assets/images/hero/slider4.webp" alt="Yash Veera Films production image 4">
+                    </div>
                 </div>
             </div>
+
             <!-- Hero copy — hidden on mobile via CSS -->
             <div class="hero-copy" id="hero-copy">
                 <p class="eyebrow hero-eyebrow">Indian Cinema · Est. 1994</p>
@@ -74,12 +111,14 @@
                 <p class="hero-intro hero-intro-anim">Bold stories. Visionary filmmakers.<br>Cinema that leaves a mark.</p>
                 <a class="text-link hero-cta-anim" href="projects.html">Explore our films <span>→</span></a>
             </div>
+
             <!-- Film label top-right -->
             <div class="hero-film-label" id="hero-film-label">
                 <span>Now playing</span>
                 <strong>Yash Veera Films</strong>
                 <small>Moving brand mark</small>
             </div>
+
             <!-- Slide controls -->
             <div class="hero-controls" aria-label="Hero film slides">
                 <button class="hero-dot active" data-slide="0" aria-label="Show animated Yash Veera Films logo"></button>
@@ -91,9 +130,9 @@
                 <span class="hero-counter">01 <i>/ 06</i></span>
             </div>
             <div class="hero-scroll">Scroll to discover <span>↓</span></div>
-            <!-- Horizontal scan line -->
             <div class="hero-scanline" aria-hidden="true"></div>
         </section>
+
         <div class="marquee-strip" aria-hidden="true">
             <div class="marquee-track">
                 <span>Yash Veera Films</span><span class="marquee-dot">◆</span>
@@ -114,7 +153,7 @@
                 <span>Balu Thambi Manasile</span><span class="marquee-dot">◆</span>
             </div>
         </div>
-        
+
         <section class="trending-section section-pad" style="background: var(--ink);">
             <div class="container section-heading reveal">
                 <div>
@@ -126,54 +165,225 @@
             <div class="trending-grid container reveal-stagger">
                 <a href="news.html" class="trending-card">
                     <div class="trending-card-img">
-                        <img loading="lazy" src="NewsImages/WhatsApp Image 2026-09-13 at 8.56.24 AM.jpeg" alt="Pyarelal Gundecha">
+                        <img loading="lazy" src="assets/images/news/news-trending-2.jpeg" alt="Pyarelal Gundecha" style="object-position: center 25%;">
                     </div>
                     <div class="trending-card-content">
                         <span class="trending-card-category">#1 Trending</span>
-                        <h3>Pyarelal Gundecha — A Vision for Indian Cinema</h3>
-                    </div>
-                </a>
-                <a href="news.html" class="trending-card">
-                    <div class="trending-card-img">
-                        <img loading="lazy" src="NewsImages/WhatsApp Image 2026-09-13 at 8.56.25 AM.jpeg" alt="Pyarelal Gundecha">
-                    </div>
-                    <div class="trending-card-content">
-                        <span class="trending-card-category">#2 Trending</span>
                         <h3>Staying Connected with Every Trend</h3>
                     </div>
                 </a>
                 <a href="news.html" class="trending-card">
                     <div class="trending-card-img">
-                        <img loading="lazy" src="ester anil land scape.jpg" alt="Trending Image">
+                        <img loading="lazy" src="assets/images/news/news-trending-1.jpeg" alt="Pyarelal Gundecha">
+                    </div>
+                    <div class="trending-card-content">
+                        <span class="trending-card-category">#2 Trending</span>
+                        <h3>Pyarelal Gundecha — A Vision for Indian Cinema</h3>
+                    </div>
+                </a>
+                <a href="news.html" class="trending-card">
+                    <div class="trending-card-img">
+                        <img loading="lazy" src="assets/images/hero/ester-anil-landscape.jpg" alt="Trending Image">
                     </div>
                     <div class="trending-card-content">
                         <span class="trending-card-category">#3 Trending</span>
                         <h3>New Project Starring Ester Anil</h3>
                     </div>
                 </a>
-                <a href="news.html" class="trending-card">
-                    <div class="trending-card-img">
-                        <img loading="lazy" src="news-uttarakhand.jpeg" alt="Garudavega Anji and Pyarelal Gundecha to Uttarakhand">
+            </div>
+        </section>
+
+        <section class="release-section section-pad">
+            <div class="container section-heading reveal">
+                <div>
+                    <p class="eyebrow">The latest frame</p>
+                    <h2>Now showing</h2>
+                </div>
+                <a class="text-link" href="projects.html">View all projects</a>
+            </div>
+            <div class="release-grid container reveal-scale">
+                <article class="release-feature">
+                    <img loading="lazy" src="assets/images/films/unexpected-poster.webp" alt="Unexpected film poster">
+                    <div class="release-caption">
+                        <span>Feature film · In production</span>
+                        <h3>Unexpected</h3>
+                        <p>Some stations don't just connect destinations. They change lives.</p>
                     </div>
-                    <div class="trending-card-content">
-                        <span class="trending-card-category">#4 Trending</span>
-                        <h3>GARUDAVEGA ANJI & Pyarelal Head to Uttarakhand for Unexpected</h3>
-                    </div>
+                </article>
+                <div class="release-side">
+                    <p class="number">01 <i>/ 04</i></p>
+                    <p class="side-copy">Every Yash Veera film begins with a question worth asking. We follow it into the unknown.</p>
+                    <a class="round-arrow" href="projects.html" aria-label="View Unexpected project"></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="manifesto-section section-pad">
+            <div class="manifesto-spotlight" aria-hidden="true"></div>
+            <div class="container manifesto reveal">
+                <h2>Yash Veera<br><em>Films.</em></h2>
+                <p>From the first idea to the final cut, we build worlds with filmmakers who care about the details. Cinema should entertain you, surprise you, and leave a mark.</p>
+                <a class="text-link" href="about.html">Meet Yash Veera Films</a>
+            </div>
+        </section>
+
+        <section class="films-section section-pad" id="films">
+            <div class="container section-heading reveal">
+                <div>
+                    <p class="eyebrow">A growing story</p>
+                    <h2>Our films</h2>
+                </div>
+                <div class="filter-label">Feature films</div>
+            </div>
+            <div class="film-list container">
+                <a class="film-row" href="projects.html">
+                    <span class="film-no">01</span>
+                    <img loading="lazy" src="assets/images/films/ratna-poster.webp" alt="Ratna film poster">
+                    <div><h3>Ratna</h3><p>Drama · Feature film</p></div>
+                    <span class="film-arrow">→</span>
+                </a>
+                <a class="film-row" href="projects.html">
+                    <span class="film-no">02</span>
+                    <img loading="lazy" src="assets/images/films/unexpected-poster.webp" alt="Unexpected film poster">
+                    <div><h3>Unexpected</h3><p>Drama · Feature film</p></div>
+                    <span class="film-arrow">→</span>
+                </a>
+                <a class="film-row" href="projects.html">
+                    <span class="film-no">03</span>
+                    <img loading="lazy" src="assets/images/films/balu-thambi-manasile-poster.webp" alt="Balu Thambi Manasile film poster">
+                    <div><h3>Balu Thambi Manasile</h3><p>Romance · Feature film</p></div>
+                    <span class="film-arrow">→</span>
                 </a>
             </div>
         </section>
 
-        <section class="release-section section-pad"><div class="container section-heading reveal"><div><p class="eyebrow">The latest frame</p><h2>Now showing</h2></div><a class="text-link" href="projects.html">View all projects</a></div><div class="release-grid container reveal-scale"><article class="release-feature"><img loading="lazy" src="slider1.webp" alt="Unexpected film poster"><div class="release-caption"><span>Feature film · In production</span><h3>Unexpected</h3><p>Some stations don't just connect destinations. They change lives.</p></div></article><div class="release-side"><p class="number">01 <i>/ 04</i></p><p class="side-copy">Every Yash Veera film begins with a question worth asking. We follow it into the unknown.</p><a class="round-arrow" href="projects.html" aria-label="View Unexpected project"></a></div></div></section>
-        <section class="manifesto-section section-pad"><div class="manifesto-spotlight" aria-hidden="true"></div><div class="container manifesto reveal"><h2>Yash Veera<br><em>Films.</em></h2><p>From the first idea to the final cut, we build worlds with filmmakers who care about the details. Cinema should entertain you, surprise you, and leave a mark.</p><a class="text-link" href="about.html">Meet Yash Veera Films</a></div></section>
-        <section class="films-section section-pad" id="films"><div class="container section-heading reveal"><div><p class="eyebrow">A growing story</p><h2>Our films</h2></div><div class="filter-label">Feature films</div></div><div class="film-list container"><a class="film-row" href="projects.html"><span class="film-no">01</span><img loading="lazy" src="slider2.webp" alt="Ratna film poster"><div><h3>Ratna</h3><p>Drama · Feature film</p></div><span class="film-arrow">→</span></a><a class="film-row" href="projects.html"><span class="film-no">02</span><img loading="lazy" src="slider1.webp" alt="Unexpected film poster"><div><h3>Unexpected</h3><p>Drama · Feature film</p></div><span class="film-arrow">→</span></a><a class="film-row" href="projects.html"><span class="film-no">03</span><img loading="lazy" src="slider3.webp" alt="Balu Thambi Manasile film poster"><div><h3>Balu Thambi Manasile</h3><p>Romance · Feature film</p></div><span class="film-arrow">→</span></a></div></section>
-        <section class="studio-section section-pad"><div class="container studio-grid reveal"><div><p class="eyebrow">30 years of experience</p><h2>A house for<br><em>bold stories.</em></h2></div><div class="studio-copy"><p class="studio-stat-line"><strong class="counter-number" data-target="30" data-suffix="+">0+</strong><span class="studio-stat-label">Years of bold<br>Indian cinema</span></p><p>Yash Veera Films is an Indian production company creating original cinema with powerful stories, visionary filmmakers, and unforgettable characters.</p><a class="text-link" href="about.html">Discover our vision</a></div></div></section>
-        <section class="home-gallery-section section-pad"><div class="container section-heading reveal"><div><p class="eyebrow">Behind the frame</p><h2>On set</h2></div><a class="text-link" href="gallery.html">View full gallery</a></div><div class="film-strip-border container"><div class="home-gallery-grid reveal-stagger"><a href="gallery.html"><img loading="lazy" src="gallery/WhatsApp Image 2026-09-04 at 11.55.42 AM (1) (1).jpg" alt="Pyarelal Gundecha meeting Shri Amit Shah" style="object-position: center 15%;"><span>01</span></a><a href="gallery.html"><img loading="lazy" src="gallery/production-still-3.webp" alt="Behind the scenes production still" style="object-position: center center;"><span>02</span></a><a href="gallery.html"><img loading="lazy" src="gallery/WhatsApp Image 2026-09-03 at 7.47.35 PM.jpeg" alt="Pyarelal Gundecha meeting actor Prashant Narayanan" style="object-position: center 15%;"><span>03</span></a><a href="gallery.html"><img loading="lazy" src="gallery/WhatsApp Image 2026-09-05 at 8.21.43 PM.jpeg" alt="Pyarelal Gundecha honouring Shri C. P. Radhakrishnan" style="object-position: center center;"><span>04</span></a></div></div></section>
-        <section class="people-section section-pad"><div class="container people-grid reveal"><div><p class="eyebrow">The people behind the picture</p><h2>Vision needs<br><em>a team.</em></h2></div><div class="people-copy"><p>From directors and actors to every creator behind the camera, we bring talented people together to make ambitious ideas live.</p><a class="text-link" href="cast.html">Meet the cast & crew</a></div></div></section>
-        <section class="journal-section section-pad"><div class="container section-heading reveal"><div><p class="eyebrow">From the journal</p><h2>News & media</h2></div><a class="text-link" href="gallery.html">See the gallery</a></div><div class="journal-grid container reveal-stagger"><article><img loading="lazy" src="slider2.webp" alt="Behind the scenes from Ratna"><p class="eyebrow">Behind the scenes · 12.08.24</p><h3>Finding the heart of Ratna</h3><a href="gallery.html" class="read-more">Read story</a></article><article><img loading="lazy" src="slider3.webp" alt="Balu Thambi Manasile production still"><p class="eyebrow">Production notes · 04.06.24</p><h3>When a frame starts to feel like home</h3><a href="gallery.html" class="read-more">Read story</a></article></div></section>
-        <section class="home-contact-section"><div class="container home-contact reveal"><div><p class="eyebrow">Have a story to tell?</p><h2>Let’s make<br><em>something lasting.</em></h2></div><a class="contact-circle" href="contact.html" aria-label="Contact Yash Veera Films"></a></div></section>
+        <section class="studio-section section-pad">
+            <div class="container studio-grid reveal">
+                <div>
+                    <p class="eyebrow">30 years of experience</p>
+                    <h2>A house for<br><em>bold stories.</em></h2>
+                </div>
+                <div class="studio-copy">
+                    <p class="studio-stat-line">
+                        <strong class="counter-number" data-target="30" data-suffix="+">0+</strong>
+                        <span class="studio-stat-label">Years of bold<br>Indian cinema</span>
+                    </p>
+                    <p>Yash Veera Films is an Indian production company creating original cinema with powerful stories, visionary filmmakers, and unforgettable characters.</p>
+                    <a class="text-link" href="about.html">Discover our vision</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="home-gallery-section section-pad">
+            <div class="container section-heading reveal">
+                <div>
+                    <p class="eyebrow">Behind the frame</p>
+                    <h2>On set</h2>
+                </div>
+                <a class="text-link" href="gallery.html">View full gallery</a>
+            </div>
+            <div class="film-strip-border container">
+                <div class="home-gallery-grid reveal-stagger">
+                    <a href="gallery.html">
+                        <img loading="lazy" src="assets/images/gallery/production/meeting-amit-shah.jpg" alt="Pyarelal Gundecha meeting Shri Amit Shah" style="object-position: center 15%;">
+                        <span>01</span>
+                    </a>
+                    <a href="gallery.html">
+                        <img loading="lazy" src="assets/images/gallery/production/production-still-3.webp" alt="Behind the scenes production still" style="object-position: center center;">
+                        <span>02</span>
+                    </a>
+                    <a href="gallery.html">
+                        <img loading="lazy" src="assets/images/gallery/production/meeting-prashant-narayanan.jpeg" alt="Pyarelal Gundecha meeting actor Prashant Narayanan" style="object-position: center 15%;">
+                        <span>03</span>
+                    </a>
+                    <a href="gallery.html">
+                        <img loading="lazy" src="assets/images/gallery/production/honouring-cp-radhakrishnan.jpeg" alt="Pyarelal Gundecha honouring Shri C. P. Radhakrishnan" style="object-position: center center;">
+                        <span>04</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="people-section section-pad">
+            <div class="container people-grid reveal">
+                <div>
+                    <p class="eyebrow">The people behind the picture</p>
+                    <h2>Vision needs<br><em>a team.</em></h2>
+                </div>
+                <div class="people-copy">
+                    <p>From directors and actors to every creator behind the camera, we bring talented people together to make ambitious ideas live.</p>
+                    <a class="text-link" href="cast.html">Meet the cast & crew</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="journal-section section-pad">
+            <div class="container section-heading reveal">
+                <div>
+                    <p class="eyebrow">From the journal</p>
+                    <h2>News & media</h2>
+                </div>
+                <a class="text-link" href="gallery.html">See the gallery</a>
+            </div>
+            <div class="journal-grid container reveal-stagger">
+                <article>
+                    <img loading="lazy" src="assets/images/films/ratna-poster.webp" alt="Behind the scenes from Ratna">
+                    <p class="eyebrow">Behind the scenes · 12.08.24</p>
+                    <h3>Finding the heart of Ratna</h3>
+                    <a href="gallery.html" class="read-more">Read story</a>
+                </article>
+                <article>
+                    <img loading="lazy" src="assets/images/films/balu-thambi-manasile-poster.webp" alt="Balu Thambi Manasile production still">
+                    <p class="eyebrow">Production notes · 04.06.24</p>
+                    <h3>When a frame starts to feel like home</h3>
+                    <a href="gallery.html" class="read-more">Read story</a>
+                </article>
+            </div>
+        </section>
+
+        <section class="home-contact-section">
+            <div class="container home-contact reveal">
+                <div>
+                    <p class="eyebrow">Have a story to tell?</p>
+                    <h2>Let's make<br><em>something lasting.</em></h2>
+                </div>
+                <a class="contact-circle" href="contact.html" aria-label="Contact Yash Veera Films"></a>
+            </div>
+        </section>
     </main>
-    <footer><div class="container footer-top"><div class="footer-brand"><a href="index.html" class="logo"><img loading="lazy" class="brand-logo" src="about-us/yash-veera-films-logo.webp" alt="Yash Veera Films logo"><strong>YASH VEERA<br><small>FILMS</small></strong></a><p>Stories that stay.</p></div><div class="footer-links"><div><p class="eyebrow">Navigate</p><a href="projects.html">Projects</a><a href="about.html">About us</a><a href="gallery.html">Gallery</a><a href="news.html">News</a></div><div><p class="eyebrow">Connect</p><a href="contact.html">Get in touch</a><a href="tel:+919940290000">+91 99402 90000</a><a href="mailto:yashveerafilms@gmail.com">yashveerafilms@gmail.com</a></div></div></div><div class="container footer-bottom"><span>© 2026 Yash Veera Films</span><span>Made for the big screen.</span></div></footer>
+
+    <footer>
+        <div class="container footer-top">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <img loading="lazy" class="brand-logo" src="assets/images/brand/yash-veera-films-logo.webp" alt="Yash Veera Films logo">
+                    <strong>YASH VEERA<br><small>FILMS</small></strong>
+                </a>
+                <p>Stories that stay.</p>
+            </div>
+            <div class="footer-links">
+                <div>
+                    <p class="eyebrow">Navigate</p>
+                    <a href="projects.html">Projects</a>
+                    <a href="about.html">About us</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="news.html">News</a>
+                </div>
+                <div>
+                    <p class="eyebrow">Connect</p>
+                    <a href="contact.html">Get in touch</a>
+                    <a href="tel:+919940290000">+91 99402 90000</a>
+                    <a href="mailto:yashveerafilms@gmail.com">yashveerafilms@gmail.com</a>
+                </div>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <span>© 2026 Yash Veera Films</span>
+            <span>Made for the big screen.</span>
+        </div>
+    </footer>
+
     <div class="page-transition" id="page-transition" aria-hidden="true"></div>
-    <script src="script.js" defer></script>
+    <script src="assets/js/script.js" defer></script>
 </body>
 </html>
