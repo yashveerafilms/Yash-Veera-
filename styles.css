@@ -1212,11 +1212,13 @@ body.about-body .about-partner-section .about-visual-label strong {
         max-height: none;
     }
     .news-featured .news-card-img {
-        height: 50vh; /* Image takes exactly half screen */
+        height: auto; /* Allow full image height */
         min-height: unset;
     }
     .news-featured .news-card-img img {
-        object-position: top center; /* Show the head clearly */
+        height: auto;
+        object-fit: contain; /* Ensure no cropping */
+        object-position: center; 
     }
     .news-featured .news-card-content {
         padding: 28px 24px;
