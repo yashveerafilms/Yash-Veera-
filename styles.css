@@ -1207,11 +1207,16 @@ body.about-body .about-partner-section .about-visual-label strong {
     .news-featured {
         grid-column: 1 / -1;
         grid-template-columns: 1fr;
+        height: auto;
         min-height: unset;
+        max-height: none;
     }
     .news-featured .news-card-img {
-        height: 240px;
+        height: 50vh; /* Image takes exactly half screen */
         min-height: unset;
+    }
+    .news-featured .news-card-img img {
+        object-position: top center; /* Show the head clearly */
     }
     .news-featured .news-card-content {
         padding: 28px 24px;
