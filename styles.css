@@ -1139,18 +1139,23 @@ body.about-body .about-partner-section .about-visual-label strong {
 .news-featured {
     grid-column: 1 / -1;
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1fr 1fr; /* exactly half screen for image, half for text */
     gap: 0;
     background: rgba(23, 20, 17, 0.8);
     border: 1px solid var(--glass-border);
     border-radius: 16px;
     overflow: hidden;
     align-items: center;
-    min-height: 420px;
+    height: 50vh;
+    min-height: 400px;
+    max-height: 550px;
 }
 .news-featured .news-card-img {
     height: 100%;
-    min-height: 420px;
+    min-height: unset;
+}
+.news-featured .news-card-img img {
+    object-position: center 20%; /* adjust crop to show faces better */
 }
 .news-featured .news-card-content {
     padding: 50px 48px;
