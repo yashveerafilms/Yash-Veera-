@@ -14,7 +14,7 @@
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 /* Global image safety — prevents overflow on any screen size */
-img { max-width: 100%; height: auto; display: block; }
+img { max-width: 100%; display: block; }
 html { scroll-behavior: smooth; }
 body { background: var(--ink); color: var(--paper); font-family: 'DM Sans', sans-serif; line-height: 1.6; overflow-x: hidden; }
 a { color: inherit; text-decoration: none; }
@@ -1176,40 +1176,45 @@ body.about-body .about-partner-section .about-visual-label strong {
     transform: translateX(4px);
 }
 
-/* Featured card — full width, side by side on desktop */
+/* Featured card — full width, image left / text right */
 .news-featured {
     grid-column: 1 / -1;
     display: grid;
-    grid-template-columns: 1fr 1fr; /* exactly half screen for image, half for text */
+    grid-template-columns: 1fr 1fr;
     gap: 0;
     background: rgba(23, 20, 17, 0.8);
     border: 1px solid var(--glass-border);
     border-radius: 16px;
     overflow: hidden;
-    align-items: stretch;
-    height: 50vh;
     min-height: 400px;
     max-height: 550px;
 }
+/* Image column — position:relative so the img can be absolute-filled */
 .news-featured .news-card-img {
-    height: 100%;
-    min-height: unset;
+    position: relative;
+    overflow: hidden;
+    min-height: 400px;         /* same as card min-height so it never collapses */
 }
 .news-featured .news-card-img img {
-    object-fit: cover;         /* fill the panel — no letterboxing */
-    object-position: center top; /* anchor to top so faces/titles stay visible */
-    height: 100%;
+    position: absolute;
+    inset: 0;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
 }
-/* Poster-style images (portrait ratio like film posters) — contain so full poster shows */
+/* Poster images — show full poster with dark letterbox fill */
 .news-featured.news-poster .news-card-img img {
     object-fit: contain;
     object-position: center;
-    background: #0d0b09;       /* dark fill behind the contained poster */
+    background: #0d0b09;
 }
 .news-featured .news-card-content {
     padding: 50px 48px;
-    overflow-y: auto;          /* if content is taller than the card, scroll internally */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto;
 }
 .news-featured h3 {
     font-size: clamp(26px, 3.5vw, 44px);
@@ -1229,23 +1234,10 @@ body.about-body .about-partner-section .about-visual-label strong {
         grid-column: 1 / -1;
         grid-template-columns: 1fr 1fr;
         min-height: 360px;
-        height: auto;
         max-height: 480px;
     }
     .news-featured .news-card-img {
-        min-height: unset;
-        height: 100%;
-    }
-    .news-featured .news-card-img img {
-        object-fit: cover;
-        object-position: center top;
-        height: 100%;
-        width: 100%;
-    }
-    .news-featured.news-poster .news-card-img img {
-        object-fit: contain;
-        object-position: center;
-        background: #0d0b09;
+        min-height: 360px;
     }
     .news-featured .news-card-content {
         padding: 40px 36px;
@@ -1272,25 +1264,21 @@ body.about-body .about-partner-section .about-visual-label strong {
     .news-featured {
         grid-column: 1 / -1;
         grid-template-columns: 1fr;
-        height: auto;
         min-height: unset;
         max-height: none;
     }
     .news-featured .news-card-img {
-        height: 260px;          /* fixed, consistent image height on mobile */
-        min-height: unset;
-        max-height: 260px;
+        min-height: 260px;
+        height: 260px;
     }
     .news-featured .news-card-img img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;      /* crop to fill — no massive portrait stretching */
+        object-fit: cover;
         object-position: center top;
     }
-    /* Poster cards: show more of the poster on mobile with a taller crop */
+    /* Poster cards: taller on mobile so the full poster is visible */
     .news-featured.news-poster .news-card-img {
         height: 340px;
-        max-height: 340px;
+        min-height: 340px;
     }
     .news-featured.news-poster .news-card-img img {
         object-fit: contain;
