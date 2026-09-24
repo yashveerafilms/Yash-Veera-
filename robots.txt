@@ -1,7 +1,43 @@
+# Yash Veera Films — robots.txt
+# https://yashveerafilms.com
+
+# Allow all well-behaved crawlers full access
 User-agent: *
 Allow: /
-
-# Block access to git internals
 Disallow: /.git/
+Disallow: /push.bat
+Disallow: /Run Website.bat
 
+# Google — full access, fast indexing
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 2
+
+# Google Images — allow all images
+User-agent: Googlebot-Image
+Allow: /assets/images/
+Allow: /NewsImages/
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 5
+
+# Block bad scrapers and AI training crawlers
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+# Sitemaps
 Sitemap: https://yashveerafilms.com/sitemap.xml

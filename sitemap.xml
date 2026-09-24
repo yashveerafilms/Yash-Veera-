@@ -1,53 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
+  <!-- HOME — highest priority, updated frequently with news/trending -->
   <url>
     <loc>https://yashveerafilms.com/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://yashveerafilms.com/assets/images/brand/yash-veera-films-logo.webp</image:loc>
+      <image:title>Yash Veera Films — Indian Film Production Company, Chennai</image:title>
+    </image:image>
   </url>
 
+  <!-- ABOUT — primary person/brand page -->
   <url>
     <loc>https://yashveerafilms.com/about.html</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://yashveerafilms.com/assets/images/about/about-us-hero.webp</image:loc>
+      <image:title>Pyarelal Gundecha — Founder of Yash Veera Films, Indian Film Producer Chennai</image:title>
+    </image:image>
   </url>
 
+  <!-- PROJECTS — high commercial value page -->
   <url>
     <loc>https://yashveerafilms.com/projects.html</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://yashveerafilms.com/assets/images/films/unexpected-poster.webp</image:loc>
+      <image:title>Unexpected — Yash Veera Films 2026 Pan-India Film by Pyarelal Gundecha</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://yashveerafilms.com/assets/images/films/expected-poster.jpg</image:loc>
+      <image:title>Expected — Yash Veera Films film starring Esther Anil directed by S D Ashok</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://yashveerafilms.com/assets/images/films/ratna-poster.webp</image:loc>
+      <image:title>Ratna — 1998 Tamil action drama film by Yash Veera Films</image:title>
+    </image:image>
   </url>
 
+  <!-- NEWS — active content hub, indexed daily -->
   <url>
     <loc>https://yashveerafilms.com/news.html</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://yashveerafilms.com/assets/images/news/news-pan-india-crew.jpeg</image:loc>
+      <image:title>Pyarelal Gundecha Pan-Indian Movie — 30-member crew Chennai to Dehradun Uttarakhand 2026</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://yashveerafilms.com/assets/images/news/gundecha-pyarelal-poster.jpeg</image:loc>
+      <image:title>Gundecha Pyarelal — Pyarelal Gundecha Sojat Road poster</image:title>
+    </image:image>
   </url>
 
+  <!-- CAST & CREW -->
   <url>
     <loc>https://yashveerafilms.com/cast.html</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.80</priority>
   </url>
 
+  <!-- GALLERY -->
   <url>
     <loc>https://yashveerafilms.com/gallery.html</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://yashveerafilms.com/assets/images/gallery/production/pyarelal-gundecha.jpg</image:loc>
+      <image:title>Pyarelal Gundecha — visionary Indian film producer, Yash Veera Films</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://yashveerafilms.com/assets/images/gallery/production/meeting-amit-shah.jpg</image:loc>
+      <image:title>Pyarelal Gundecha meeting Shri Amit Shah</image:title>
+    </image:image>
   </url>
 
+  <!-- CONTACT -->
   <url>
     <loc>https://yashveerafilms.com/contact.html</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.70</priority>
   </url>
 
 </urlset>
