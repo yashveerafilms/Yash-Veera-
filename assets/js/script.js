@@ -433,6 +433,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentSlide = 0;
     let sliderTimer;
 
+    slides.forEach(slide => {
+        const media = slide.querySelector('img, video');
+        const source = media?.tagName === 'VIDEO' ? media.getAttribute('poster') : media?.getAttribute('src');
+        if (source) slide.style.backgroundImage = `url("${source}")`;
+    });
+
     function goToSlide(index) {
         if (!slides.length) return;
         slides[currentSlide].querySelector('video')?.pause();

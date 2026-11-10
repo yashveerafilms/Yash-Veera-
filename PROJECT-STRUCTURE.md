@@ -38,21 +38,16 @@ YashVeeraFilm/
 │       │   ├── hero-1.webp
 │       │   ├── hero-2.webp
 │       │   ├── hero-3.webp
-│       │   ├── slider1.webp
 │       │   ├── slider2.webp
 │       │   ├── slider3.webp
-│       │   ├── slider4.webp
 │       │   └── ester-anil-landscape.jpg
 │       │
 │       ├── films/              # Film poster / cover images
 │       │   ├── ratna-poster.webp
-│       │   ├── unexpected-poster.webp
 │       │   ├── balu-thambi-manasile-poster.webp
-│       │   └── expected-poster.jpg
 │       │
 │       ├── news/               # Images used in news articles
 │       │   ├── news-pyarelal.jpeg
-│       │   ├── news-uttarakhand.jpeg
 │       │   ├── news-trending-1.jpeg
 │       │   └── news-trending-2.jpeg
 │       │
@@ -67,7 +62,6 @@ YashVeeraFilm/
 │           │   ├── meeting-esther-anil.jpeg
 │           │   ├── honouring-cp-radhakrishnan.jpeg
 │           │   ├── on-set-production-still.jpeg
-│           │   ├── pyarelal-gundecha.jpg
 │           │   └── grandfather-grandchild.jpg
 │           │
 │           ├── honorable/      # Felicitation of Honorable Officials
